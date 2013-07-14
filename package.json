@@ -1,8 +1,10 @@
 {
   "name": "node-c4d-cli",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Commandline Interface for MAXON CINEMA 4D",
-  "main": "main",
+  "bin": {
+    "c4d-cli": "./bin/c4d-cli.js"
+  },
   "dependencies": {
     "commander": "1.3.0"
   },
@@ -15,7 +17,11 @@
     "url": "https://github.com/WrongEntertainment/node-c4d-cli.git"
   },
   "keywords": ["maxon", "cinema4d", "c4d"],
-  "author": "Paul Vollmer",
+  "author": {
+    "name": "Paul Vollmer",
+    "email": "paul.vollmer@fh-potsdam.de",
+    "url": "https://github.com/WrongEntertainment/"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/WrongEntertainment/node-c4d-cli/issues"
