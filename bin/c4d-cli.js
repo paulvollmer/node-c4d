@@ -14,6 +14,7 @@
 var spawn = require('child_process').spawn;
 var program = require('commander');
 var config = require('./config');
+var pkg = require('../package.json');
 
 
 /**
@@ -28,28 +29,41 @@ var config = require('./config');
 //     console.log('process exit code ' + code);
 // });
 
+/**
+ * Variables
+ */
+var silent = false;
 
 /**
  * The cli options.
  */
 program
-  .version('0.0.2')
-  .option('-r, --render [file]', 'Render the added file.', 'testfile')
+  .version(pkg.version)
+  .option('-r, --render [filepath]', 'Render the added file.', 'testfile')
+  .option('-s, --silent', 'Silent mode. Don\'t output anything' )
   .parse(process.argv);
 
 
-if (program.render) {
-  var tmpRender = '-render '+program.render;
-  console.log('tmpRender: '+tmpRender);
+if (program.silent) {
+  silent = true;
+}
 
+if (program.render) {
   var c4dRender = spawn(config.cinema4d_path, ['-nogui', '-render', program.render]);
+  
   c4dRender.stdout.on('data', function (data) {
-    console.log(data.toString());
+    if (!silent) {
+      console.log(data.toString());
+    }
   });
   c4dRender.stderr.on('data', function (data) {
-    console.log('Error: '+data.toString());
+    if (!silent) {
+      console.log('Error: '+data.toString());
+    }
   });
   c4dRender.on('close', function(code) {
-    console.log('Closed with code: '+code);
+    if (!silent) {
+      console.log('Closed with code: '+code);
+    }
   });
 }
