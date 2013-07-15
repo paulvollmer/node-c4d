@@ -2,6 +2,10 @@
 
 Commandline Interface for MAXON CINEMA 4D
 
-## install
+## Install
 
     npm install -g node-c4d-cli
+
+## CINEMA 4D
+
+Tested with CINEMA 4D R14
