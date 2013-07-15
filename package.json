@@ -16,13 +16,22 @@
     "type": "git",
     "url": "https://github.com/WrongEntertainment/node-c4d-cli.git"
   },
-  "keywords": ["maxon", "cinema4d", "c4d"],
+  "keywords": [
+    "maxon",
+    "cinema4d",
+    "c4d"
+  ],
   "author": {
     "name": "Paul Vollmer",
     "email": "paul.vollmer@fh-potsdam.de",
     "url": "https://github.com/WrongEntertainment/"
   },
-  "license": "MIT",
+  "license": [
+    {
+      "type" : "MIT",
+      "url" : "http://wrong-entertainment.mit-license.org/"
+    }
+  ],
   "bugs": {
     "url": "https://github.com/WrongEntertainment/node-c4d-cli/issues"
   }
