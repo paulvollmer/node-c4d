@@ -6,7 +6,7 @@
     "c4d-cli": "./bin/c4d-cli.js"
   },
   "dependencies": {
-    "commander": "1.3.0"
+    "commander": "2.0.0"
   },
   "devDependencies": {},
   "scripts": {
