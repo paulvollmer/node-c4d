@@ -1,5 +1,5 @@
 /*
- * Path tho the CINEMA 4D Application.
+ * Path to the CINEMA 4D Application.
  */
 exports.cinema4d_path = '/Applications/MAXON/CINEMA\ 4D R14/CINEMA\ 4D.app/Contents/MacOS/CINEMA\ 4D';
 
