@@ -8,10 +8,6 @@
   "dependencies": {
     "commander": "2.0.0"
   },
-  "devDependencies": {},
-  "scripts": {
-    "test": "none"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/WrongEntertainment/node-c4d-cli.git"
