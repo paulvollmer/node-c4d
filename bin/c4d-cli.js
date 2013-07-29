@@ -11,11 +11,11 @@
 /**
  * Module dependencies.
  */
-var spawn = require('child_process').spawn;
 var program = require('commander');
 var config = require('./config');
 var pkg = require('../package.json');
 var utils = require('../src/utils.js');
+var c4d = require('../src/index.js');
 
 /**
  * Print out the CINEMA 4D -help.
@@ -62,17 +62,10 @@ if (program.render == undefined) {
  */
 else {
   if (program.render) {
-    var c4dRender = spawn(config.cinema4d_path, ['-nogui', '-render', program.render]);
-    c4dRender.stdout.on('data', function(data) {
-      //console.log('VERSION: '+utils.getVersionFromStdout(data.toString()) );
-      if (!program.silent) console.log(data.toString());
+    c4d.render({
+      silent: program.silent,
+      file: program.render,
+      out_format: 'TIFF'
     });
-    c4dRender.stderr.on('data', function(data) {
-      if (!program.silent) console.log('Error: '+data.toString());
-    });
-    // c4dRender.on('close', function(code) {
-    //   if (!program.silent) console.log('Closed with code: '+code);
-    // });
   }
-
 }
