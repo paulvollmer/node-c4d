@@ -22,13 +22,12 @@ exports.render = function(d) {
   // Print the d object. used for development and debugging
   console.log(d);
 
-  if (d.silent === undefined) {
-  	console.log('silent: '+d.silent);
+  // Check if a filepath is set. if no filepath is set, we cannot render...
+  if (d.filepath === undefined) {
+    log(d, 'No CINEMA 4D file to render.');
   } else {
-  	console.log('silent: '+d.silent);
+    log(d, 'RENDER---------');
   }
-  if (d.filename === undefined) console.log('filename: '+d.filename);
-  if (d.frame_from === undefined) console.log('frame_from: '+d.frame_from);
 
 
   var c4dRender = spawn(cinema4d_path, ['-nogui', '-render', d.filename]);
