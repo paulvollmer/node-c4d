@@ -45,7 +45,7 @@ program.on('--help', function() {
   console.log('  Examples:');
   console.log('');
   console.log('    # render a file');
-  console.log('    $ c4d-cli -r /path/to/your/file.c4d');
+  console.log('    $ c4d -r /path/to/your/file.c4d');
   console.log('');
 });
 program.parse(process.argv);
