@@ -51,7 +51,7 @@ else {
   if (program.render) {
     c4d.render({
       silent: program.silent,
-      file: program.render,
+      filepath: program.render,
       out_format: 'TIFF'
     });
   }
