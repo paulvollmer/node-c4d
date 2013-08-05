@@ -50,3 +50,15 @@ exports.render = function(d) {
   //if (!data.silent) console.log('Render '+data);
 
 }
+
+/**
+ * Log some data if the silent mode is not defined.
+ *
+ * @param d The data object.
+ * @parma s The string we want to print out.
+ */
+function log(d, s) {
+  if(d.silent === undefined) {
+    console.log(s);
+  }
+}
