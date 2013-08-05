@@ -25,29 +25,48 @@ exports.render = function(d) {
   // Check if a filepath is set. if no filepath is set, we cannot render...
   if (d.filepath === undefined) {
     log(d, 'No CINEMA 4D file to render.');
-  } else {
-    log(d, 'RENDER---------');
   }
+  // Call the render...
+  else {
+    // This is the cli options array we need to execute with the spawn function.
+    var tmpOptionsArray = [];
+    tmpOptionsArray.push('-nogui');
+    tmpOptionsArray.push('-render');
+    tmpOptionsArray.push(d.filepath);
 
+    // Check the different options...
+    if (d.oimage !== undefined) {
+      tmpOptionsArray.push('-oimage');
+      tmpOptionsArray.push(d.oimage);
+    };
+    if (d.omultipass !== undefined) {
+      tmpOptionsArray.push('-omultipass');
+      tmpOptionsArray.push(d.omultipass);
+    };
+    if (d.oformat !== undefined) {
+      tmpOptionsArray.push('-oformat');
+      tmpOptionsArray.push(d.oformat);
+    };
+    if (d.threads !== undefined) {
+      tmpOptionsArray.push('-threads');
+      tmpOptionsArray.push(d.threads);
+    };
 
-  var c4dRender = spawn(cinema4d_path, ['-nogui', '-render', d.filename]);
-  c4dRender.stdout.on('data', function(data) {
-    //console.log('VERSION: '+utils.getVersionFromStdout(data.toString()) );
-    if (!d.silent) {
-    	console.log(data.toString());
-    }
-  });
-  c4dRender.stderr.on('data', function(data) {
-    if (!d.silent) {
-    	console.log('Error: '+data.toString());
-    }
-  });
-  // c4dRender.on('close', function(code) {
-  //   if (!program.silent) console.log('Closed with code: '+code);
-  // });
+    //log(d, tmpOptionsArray);
 
-  //if (!data.silent) console.log('Render '+data);
-
+    // Execute the CINEMA 4D commandline interface.
+    var c4dRender = spawn(cinema4d_path, tmpOptionsArray);
+    c4dRender.stdout.on('data', function(data) {
+      //console.log('VERSION: '+utils.getVersionFromStdout(data.toString()) );
+      log(d, data.toString());
+    });
+    c4dRender.stderr.on('data', function(data) {
+      log(d, 'Error: '+data.toString());
+    });
+    c4dRender.on('close', function(code) {
+      //log(d, 'Closed with code: '+code);
+    });
+  }
 }
 
 /**
