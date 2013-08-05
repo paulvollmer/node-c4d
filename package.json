@@ -3,7 +3,7 @@
   "version": "0.0.3",
   "description": "Commandline Interface for MAXON CINEMA 4D",
   "bin": {
-    "c4d-cli": "./bin/c4d-cli.js"
+    "c4d": "./bin/c4d-cli.js"
   },
   "dependencies": {
     "commander": "2.0.0"
