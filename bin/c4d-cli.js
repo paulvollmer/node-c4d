@@ -18,19 +18,6 @@ var utils = require('../src/utils.js');
 var c4d = require('../src/index.js');
 
 /**
- * Print out the CINEMA 4D -help.
- * Only used for developing and debugging this tool.
- */
-// var c4dHelp = spawn(config.cinema4d_path, ['-help']);
-// c4dHelp.stdout.on('data', function (data) {
-//     console.log(data.toString());
-// });
-// c4dHelp.on('close', function (code) {
-//     console.log('process exit code ' + code);
-// });
-
-
-/**
  * The cli options.
  */
 program
