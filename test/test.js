@@ -1,19 +1,22 @@
-
+/**
+ * Module dependencies.
+ */
 var c4d = require('../src/index.js');
 
-
+/**
+ * Set the path to the CINEMA 4D application.
+ */
 //c4d.setApplicationPath('/path/to/cinema/4d');
 
+/**
+ * Get the application path.
+ */
+console.log('CINEMA 4D app path: '+c4d.getApplicationPath());
+
+/**
+ * Render a c4d file and override some parameter.
+ */
 c4d.render({
-  silent: false,
-  filename: '/Users/wng/code/github/node-c4d-cli/test/files/cone_standard.c4d',
-  frame_from: 0,
-  frame_to: 1,
-  frame_step: 1,
-  oimage: 'test',
-  omultipass: 'test_multipass',
-  oformat: 'TIFF',
-  oresolution_width: 800,
-  oresolution_height: 600,
-  threads: 0
+  filepath: 'files/test.c4d',
+  frame: '0,20'
 });
