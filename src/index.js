@@ -55,7 +55,7 @@ exports.render = function(d) {
  */
 function execCinemaCli(d) {
   // Print the d object. used for development and debugging
-  console.log(d);
+  //console.log(d);
 
   // This is the cli options array we need to execute with the spawn function.
   var tmpOptionsArray = [];
