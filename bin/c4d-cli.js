@@ -37,7 +37,10 @@ program.on('--help', function() {
   console.log('  Examples:');
   console.log('');
   console.log('    # render a file');
-  console.log('    $ c4d -r /path/to/your/file.c4d');
+  console.log('    $ c4d --render /path/to/your/file.c4d');
+  console.log('');
+  console.log('    # render a file and override the resolution');
+  console.log('    $ c4d --render /path/to/your/file.c4d -oresolution 1500,1000');
   console.log('');
 });
 program.parse(process.argv);
