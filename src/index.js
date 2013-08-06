@@ -104,8 +104,6 @@ function execCinemaCli(d) {
     tmpOptionsArray.push(d.threads);
   };
 
-  //log(d, tmpOptionsArray);
-
   // Execute the CINEMA 4D commandline interface.
   var c4dRender = spawn(cinema4d_path, tmpOptionsArray);
   c4dRender.stdout.on('data', function(data) {
