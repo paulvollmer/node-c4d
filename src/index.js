@@ -5,11 +5,16 @@ var spawn = require('child_process').spawn;
 
 /**
  * The default path to the CINEMA 4D Application.
+ *
+ * @api private
  */
 var cinema4d_path = '/Applications/MAXON/CINEMA\ 4D R14/CINEMA\ 4D.app/Contents/MacOS/CINEMA\ 4D';
 
 /**
  * Set the path to the CINEMA 4D Application.
+ *
+ * @param {String} path
+ * @api public
  */
 exports.setApplicationPath = function(path) {
   cinema4d_path = path;
@@ -17,6 +22,8 @@ exports.setApplicationPath = function(path) {
 
 /**
  * This is the main render function.
+ *
+ * @api public
  */
 exports.render = function(d) {
   // Print the d object. used for development and debugging
@@ -74,6 +81,7 @@ exports.render = function(d) {
  *
  * @param d The data object.
  * @parma s The string we want to print out.
+ * @api private
  */
 function log(d, s) {
   if(d.silent === undefined) {
