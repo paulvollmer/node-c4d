@@ -39,7 +39,7 @@ exports.getApplicationPath = function() {
 exports.render = function(d) {
   // Check if a filepath is set. if no filepath is set, we cannot render...
   if (d.filepath === undefined) {
-    log(d, 'No CINEMA 4D file to render.');
+    log(d, 'No CINEMA 4D file to render. check the examples by running "c4d --help"');
   }
   // Call the render...
   else {
