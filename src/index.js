@@ -76,7 +76,7 @@ function execCinemaRender(d) {
   });
   c4dRender.on('close', function(code) {
     if (d.report) {
-      report.write(tmpStdoutData, d.report);
+      report.write(d.report, tmpStdoutData, d.silent);
     };
     //utils.log(d.silent, 'Closed with code: '+code);
   });
