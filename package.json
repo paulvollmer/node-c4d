@@ -1,6 +1,6 @@
 {
   "name": "c4d",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Commandline Interface for MAXON CINEMA 4D",
   "bin": {
     "c4d": "./bin/c4d-cli.js"
