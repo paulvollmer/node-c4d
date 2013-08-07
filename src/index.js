@@ -2,6 +2,7 @@
  * Module dependencies.
  */
 var spawn = require('child_process').spawn;
+var utils = require('./utils.js');
 var report = require('./report.js');
 
 /**
@@ -40,7 +41,7 @@ exports.getApplicationPath = function() {
 exports.render = function(d) {
   // Check if a filepath is set. if no filepath is set, we cannot render...
   if (d.filepath === undefined) {
-    log(d, 'No CINEMA 4D file to render. check the examples by running "c4d --help"');
+    utils.log(d, 'No CINEMA 4D file to render. check the examples by running "c4d --help"');
   }
   // Call the render...
   else {
@@ -67,17 +68,17 @@ function execCinemaRender(d) {
   var c4dRender = spawn(cinema4d_path, tmpOptionsArray);
   c4dRender.stdout.on('data', function(data) {
     //console.log('VERSION: '+utils.getVersionFromStdout(data.toString()) );
-    log(d, data.toString());
+    utils.log(d, data.toString());
     tmpStdoutData += data.toString();
   });
   c4dRender.stderr.on('data', function(data) {
-    log(d, 'Error: '+data.toString());
+    utils.log(d, 'Error: '+data.toString());
   });
   c4dRender.on('close', function(code) {
     if (d.report) {
       report.write(tmpStdoutData, d.report);
     };
-    //log(d, 'Closed with code: '+code);
+    //utils.log(d, 'Closed with code: '+code);
   });
 }
 
@@ -139,17 +140,4 @@ function checkOptions(d) {
   };
 
   return tmpOptionsArray;
-}
-
-/**
- * Log some data if the silent mode is not defined.
- *
- * @param d The data object.
- * @parma s The string we want to print out.
- * @api private
- */
-function log(d, s) {
-  if(d.silent === undefined) {
-    console.log(s);
-  }
 }
