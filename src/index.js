@@ -2,7 +2,7 @@
  * Module dependencies.
  */
 var spawn = require('child_process').spawn;
-var fs = require('fs');
+var report = require('./report.js');
 
 /**
  * The default path to the CINEMA 4D Application.
@@ -75,7 +75,7 @@ function execCinemaRender(d) {
   });
   c4dRender.on('close', function(code) {
     if (d.report) {
-      writeReport(tmpStdoutData, d.report);
+      report.write(tmpStdoutData, d.report);
     };
     //log(d, 'Closed with code: '+code);
   });
@@ -139,27 +139,6 @@ function checkOptions(d) {
   };
 
   return tmpOptionsArray;
-}
-
-/**
- * Save the stdout to a file.
- *
- * @param {String} data
- * @param {String} filepath
- * @api private
- */
-function writeReport(data, filepath) {
-  // If no filepath is set...
-  if (filepath === true) {
-    console.log('NO FILEPATH SET');
-    fs.writeFile('report.txt', data);
-  }
-  // If a filepath is set...
-  else {
-    console.log('FILEPATH: ');
-    console.log(filepath);
-    fs.writeFile(filepath+'/report.txt', data);
-  }
 }
 
 /**
