@@ -59,7 +59,6 @@ function execCinemaRender(d) {
 
   // This is the cli options array we need to execute with the spawn function.
   var tmpOptionsArray = [];
-  tmpOptionsArray.push('-nogui');
   tmpOptionsArray.push('-render');
   tmpOptionsArray.push(d.filepath);
 
@@ -102,6 +101,9 @@ function execCinemaRender(d) {
   if (d.threads !== undefined) {
     tmpOptionsArray.push('-threads');
     tmpOptionsArray.push(d.threads);
+  };
+  if (d.gui === undefined) {
+    tmpOptionsArray.push('-nogui');
   };
 
   // Execute the CINEMA 4D commandline interface.

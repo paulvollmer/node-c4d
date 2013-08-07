@@ -27,6 +27,7 @@ program
   .option('-f, --oformat [imageformat]', 'override the image output format to TIFF/TGA/BMP/IFF/JPG/PICT/PSD/PSB/RLA/RPF/B3D')
   .option('-e, --oresolution [width,height]', 'override output image size')
   .option('-t, --threads [threadcnt]', 'specify number of threads (0 for auto-detection)')
+  .option('-g, --gui', 'start with user interface')
   .option('-s, --silent', 'silent mode. don\'t output anything')
 program.on('--help', function() {
   console.log('  Description:');
@@ -63,6 +64,7 @@ else {
       oformat: program.oformat,
       oresolution: program.oresolution,
       threads: program.threads,
+      gui: program.gui,
       silent: program.silent
     });
   }
