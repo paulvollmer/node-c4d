@@ -62,21 +62,26 @@ function execCinemaRender(d) {
   // This is the cli options array we need to execute with the spawn function.
   var tmpOptionsArray = checkOptions(d);
   // Save the stdout data to this variable.
-  var tmpStdoutData = '';
+  var tmpStdoutData = [];
 
   // Execute the CINEMA 4D commandline interface.
   var c4dRender = spawn(cinema4d_path, tmpOptionsArray);
   c4dRender.stdout.on('data', function(data) {
     //console.log('VERSION: '+utils.getVersionFromStdout(data.toString()) );
     utils.log(d.silent, data.toString());
-    tmpStdoutData += data.toString();
+    tmpStdoutData.push(data.toString());
   });
   c4dRender.stderr.on('data', function(data) {
     utils.log(d.silent, 'Error: '+data.toString());
   });
   c4dRender.on('close', function(code) {
     if (d.report) {
-      report.write(d.report, tmpStdoutData, d.silent);
+      var tmpData = {
+        time: 'time...',
+        message: tmpStdoutData,
+        code: code
+      };
+      report.write(d.report, tmpData, d.silent);
     };
     //utils.log(d.silent, 'Closed with code: '+code);
   });
