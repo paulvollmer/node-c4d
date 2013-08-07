@@ -1,13 +1,13 @@
 /**
- * Log some data if the silent mode is not defined.
+ * Log some data if the silent mode is not defined or false.
  *
- * @param {Object} d The data object comming from commander.js.
- * @parma {String} s The string we want to log to the console.
+ * @param {Boolean} silent
+ * @parma {String} str The string we want to log to the console.
  * @api private
  */
-exports.log = function(d, s) {
-  if(d.silent === undefined) {
-    console.log(s);
+exports.log = function(silent, str) {
+  if(silent === undefined || silent === false) {
+    console.log(str);
   }
 }
 
