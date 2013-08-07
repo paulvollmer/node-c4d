@@ -36,7 +36,41 @@ exports.write = function(filepath, data, silent) {
 
 /**
  * small file write helper.
+ *
+ * @api private
  */
 function writer(src, data) {
   fs.writeFile(src, JSON.stringify(data));
+}
+
+/**
+ * Read a report file.
+ *
+ * @param {String} dir
+ * @api public
+ */
+exports.read = function(dir, callback) {
+  tmp = fs.readFile(readDirChecker(dir), 'utf-8', function (err, content) {
+    if (err) {
+      callback(err);
+    }
+    var obj = JSON.parse(content);
+    callback(obj);
+  });
+}
+
+/**
+ * small reader helper
+ *
+ * @api private
+ */
+function readDirChecker(dir) {
+  if (dir === undefined) {
+    //console.log('No dir set');
+    return filename;
+  }
+  else {
+    //console.log('This dir set: '+dir);
+    return dir+filename;
+  }
 }
