@@ -5,6 +5,8 @@ var spawn = require('child_process').spawn;
 var utils = require('./utils.js');
 var report = require('./report.js');
 
+exports.report = report;
+
 /**
  * The default path to the CINEMA 4D Application.
  *
