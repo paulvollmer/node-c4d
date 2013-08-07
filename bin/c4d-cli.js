@@ -29,7 +29,7 @@ program
   .option('-t, --threads [threadcnt]', 'specify number of threads (0 for auto-detection)')
   .option('-g, --gui', 'start with user interface')
   .option('-s, --silent', 'silent mode. don\'t output anything')
-  .option('-c, --report [filepath]', 'save the CINEMA 4D stdout to a text file. if no filepath is set, write file to the current working directory')
+  .option('-c, --report [filepath]', 'save the CINEMA 4D stdout to a json file. if no filepath is set, write file to the current working directory')
 program.on('--help', function() {
   console.log('  Description:');
   console.log('');
@@ -41,7 +41,13 @@ program.on('--help', function() {
   console.log('    $ c4d --render /path/to/your/file.c4d');
   console.log('');
   console.log('    # render a file and override the resolution');
-  console.log('    $ c4d --render /path/to/your/file.c4d -oresolution 1500,1000');
+  console.log('    $ c4d --render /path/to/your/file.c4d --oresolution 1500,1000');
+  console.log('');
+  console.log('    # render a file from frame 0 to 100');
+  console.log('    $ c4d --render /path/to/your/file.c4d --frame 0,100');
+  console.log('');
+  console.log('    # render a file and save a report');
+  console.log('    $ c4d --render /path/to/your/file.c4d --report');
   console.log('');
 });
 program.parse(process.argv);
