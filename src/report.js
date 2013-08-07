@@ -7,13 +7,13 @@ var utils = require('./utils.js');
 /**
  * Filename of the report file.
  */
-var filename = 'report.txt';
+var filename = 'report.json';
 
 /**
  * Write a report text file.
  *
  * @param {String} filepath
- * @param {String} data
+ * @param {Object} data
  * @param {Boolean} silent
  */
 exports.write = function(filepath, data, silent) {
@@ -21,7 +21,7 @@ exports.write = function(filepath, data, silent) {
    * If no filepath is set...
    */
   if (filepath === true) {
-    fs.writeFile(filename, data);
+    writer(filename, data);
     utils.log(silent, 'Report saved to current working directory');
   }
   /*
@@ -29,7 +29,14 @@ exports.write = function(filepath, data, silent) {
    */
   else {
   	var tmpPath = filepath+'/'+filename;
-    fs.writeFile(tmpPath, data);
+    writer(tmpPath, data);
     utils.log(silent, 'Report saved to \''+tmpPath+'\'');
   }
+}
+
+/**
+ * small file write helper.
+ */
+function writer(src, data) {
+  fs.writeFile(src, JSON.stringify(data));
 }
