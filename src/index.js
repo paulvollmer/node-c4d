@@ -40,14 +40,16 @@ exports.getApplicationPath = function() {
  * @param {Object} d
  * @api public
  */
-exports.render = function(d) {
+exports.render = function(d, callback) {
   // Check if a filepath is set. if no filepath is set, we cannot render...
   if (d.filepath === undefined) {
     utils.log(d.silent, 'No CINEMA 4D file to render. check the examples by running "c4d --help"');
   }
   // Call the render...
   else {
-    execCinemaRender(d);
+    execCinemaRender(d, function(c) {
+      callback(c);
+    });
   }
 }
 
@@ -57,7 +59,7 @@ exports.render = function(d) {
  * @param {Object} d
  * @api private
  */
-function execCinemaRender(d) {
+function execCinemaRender(d, callback) {
   // Print the d object. used for development and debugging
   //console.log(d);
 
@@ -88,6 +90,7 @@ function execCinemaRender(d) {
         code: code
       };
       report.write(d.report, tmpData, d.silent);
+      callback(tmpData);
     };
     //utils.log(d.silent, 'Closed with code: '+code);
   });
