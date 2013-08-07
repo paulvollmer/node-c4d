@@ -43,17 +43,17 @@ exports.render = function(d) {
   }
   // Call the render...
   else {
-    execCinemaCli(d);
+    execCinemaRender(d);
   }
 }
 
 /**
- * This function execute the CINEMA 4D commandline interface.
+ * This function execute the CINEMA 4D commandline interface with -render option.
  *
  * @param {Object} d
  * @api private
  */
-function execCinemaCli(d) {
+function execCinemaRender(d) {
   // Print the d object. used for development and debugging
   //console.log(d);
 
