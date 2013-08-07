@@ -24,7 +24,7 @@ program
   .option('-f, --frame [from,to,step]', 'specify start frame, end frame and frame step. "to" and "step" are optional')
   .option('-i, --oimage [imagename]', 'override the image output path for rendering')
   .option('-m, --omultipass [imagename]', 'override the multipass output path for rendering')
-  .option('-f, --oformat [imageformat]', 'override the image output format to TIFF/TGA/BMP/IFF/JPG/PICT/PSD/PSB/RLA/RPF/B3D')
+  .option('-a, --oformat [imageformat]', 'override the image output format to TIFF/TGA/BMP/IFF/JPG/PICT/PSD/PSB/RLA/RPF/B3D')
   .option('-e, --oresolution [width,height]', 'override output image size')
   .option('-t, --threads [threadcnt]', 'specify number of threads (0 for auto-detection)')
   .option('-g, --gui', 'start with user interface')
