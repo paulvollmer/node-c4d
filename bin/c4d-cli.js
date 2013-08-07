@@ -11,7 +11,6 @@
  * Module dependencies.
  */
 var program = require('commander');
-var config = require('./config');
 var pkg = require('../package.json');
 var utils = require('../src/utils.js');
 var c4d = require('../src/index.js');
