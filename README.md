@@ -15,7 +15,7 @@ Commandline Interface for MAXON CINEMA 4D
 
 ## Programmatically usage
 
-    var c4d = require('c4d-cli');
+    var c4d = require('c4d');
     c4d.render({
       filepath: '/path/to/file.c4d',
       frame: '0,20'
