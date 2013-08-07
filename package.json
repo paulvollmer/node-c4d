@@ -1,6 +1,6 @@
 {
-  "name": "node-c4d-cli",
-  "version": "0.0.3",
+  "name": "node-c4d",
+  "version": "0.1.0",
   "description": "Commandline Interface for MAXON CINEMA 4D",
   "bin": {
     "c4d": "./bin/c4d-cli.js"
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/WrongEntertainment/node-c4d-cli.git"
+    "url": "https://github.com/WrongEntertainment/node-c4d.git"
   },
   "keywords": [
     "maxon",
@@ -29,6 +29,6 @@
     }
   ],
   "bugs": {
-    "url": "https://github.com/WrongEntertainment/node-c4d-cli/issues"
+    "url": "https://github.com/WrongEntertainment/node-c4d/issues"
   }
 }
