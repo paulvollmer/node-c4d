@@ -2,6 +2,7 @@
  * Module dependencies.
  */
 var spawn = require('child_process').spawn;
+var fs = require('fs');
 
 /**
  * The default path to the CINEMA 4D Application.
@@ -59,17 +60,23 @@ function execCinemaRender(d) {
 
   // This is the cli options array we need to execute with the spawn function.
   var tmpOptionsArray = checkOptions(d);
+  // Save the stdout data to this variable.
+  var tmpStdoutData = '';
 
   // Execute the CINEMA 4D commandline interface.
   var c4dRender = spawn(cinema4d_path, tmpOptionsArray);
   c4dRender.stdout.on('data', function(data) {
     //console.log('VERSION: '+utils.getVersionFromStdout(data.toString()) );
     log(d, data.toString());
+    tmpStdoutData += data.toString();
   });
   c4dRender.stderr.on('data', function(data) {
     log(d, 'Error: '+data.toString());
   });
   c4dRender.on('close', function(code) {
+    if (d.report) {
+      writeReport(tmpStdoutData, d.report);
+    };
     //log(d, 'Closed with code: '+code);
   });
 }
@@ -132,6 +139,27 @@ function checkOptions(d) {
   };
 
   return tmpOptionsArray;
+}
+
+/**
+ * Save the stdout to a file.
+ *
+ * @param {String} data
+ * @param {String} filepath
+ * @api private
+ */
+function writeReport(data, filepath) {
+  // If no filepath is set...
+  if (filepath === true) {
+    console.log('NO FILEPATH SET');
+    fs.writeFile('report.txt', data);
+  }
+  // If a filepath is set...
+  else {
+    console.log('FILEPATH: ');
+    console.log(filepath);
+    fs.writeFile(filepath+'/report.txt', data);
+  }
 }
 
 /**

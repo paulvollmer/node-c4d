@@ -29,6 +29,7 @@ program
   .option('-t, --threads [threadcnt]', 'specify number of threads (0 for auto-detection)')
   .option('-g, --gui', 'start with user interface')
   .option('-s, --silent', 'silent mode. don\'t output anything')
+  .option('-c, --report [filepath]', 'save the CINEMA 4D stdout to a text file. if no filepath is set, write file to the current working directory')
 program.on('--help', function() {
   console.log('  Description:');
   console.log('');
@@ -65,7 +66,8 @@ else {
       oresolution: program.oresolution,
       threads: program.threads,
       gui: program.gui,
-      silent: program.silent
+      silent: program.silent,
+      report: program.report
     });
   }
 }
