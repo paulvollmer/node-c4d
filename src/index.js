@@ -58,7 +58,32 @@ function execCinemaRender(d) {
   //console.log(d);
 
   // This is the cli options array we need to execute with the spawn function.
+  var tmpOptionsArray = checkOptions(d);
+
+  // Execute the CINEMA 4D commandline interface.
+  var c4dRender = spawn(cinema4d_path, tmpOptionsArray);
+  c4dRender.stdout.on('data', function(data) {
+    //console.log('VERSION: '+utils.getVersionFromStdout(data.toString()) );
+    log(d, data.toString());
+  });
+  c4dRender.stderr.on('data', function(data) {
+    log(d, 'Error: '+data.toString());
+  });
+  c4dRender.on('close', function(code) {
+    //log(d, 'Closed with code: '+code);
+  });
+}
+
+/**
+ * Check the Options comming from commander.js
+ *
+ * @param {Object} d
+ * @return {Array}
+ * @api private
+ */
+function checkOptions(d) {
   var tmpOptionsArray = [];
+
   tmpOptionsArray.push('-render');
   tmpOptionsArray.push(d.filepath);
 
@@ -106,18 +131,7 @@ function execCinemaRender(d) {
     tmpOptionsArray.push('-nogui');
   };
 
-  // Execute the CINEMA 4D commandline interface.
-  var c4dRender = spawn(cinema4d_path, tmpOptionsArray);
-  c4dRender.stdout.on('data', function(data) {
-    //console.log('VERSION: '+utils.getVersionFromStdout(data.toString()) );
-    log(d, data.toString());
-  });
-  c4dRender.stderr.on('data', function(data) {
-    log(d, 'Error: '+data.toString());
-  });
-  c4dRender.on('close', function(code) {
-    //log(d, 'Closed with code: '+code);
-  });
+  return tmpOptionsArray;
 }
 
 /**
