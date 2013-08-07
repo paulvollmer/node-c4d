@@ -2,9 +2,16 @@
 
 Commandline Interface for MAXON CINEMA 4D
 
+
 ## Install
 
-    npm install -g node-c4d
+    npm install -g c4d
+
+
+## Terminal usage
+
+    c4d -r /path/to/file.c4d
+
 
 ## CINEMA 4D
 
