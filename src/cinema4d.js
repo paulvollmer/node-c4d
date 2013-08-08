@@ -11,7 +11,7 @@ var cinema4d_path = '/Applications/MAXON/CINEMA\ 4D R14/CINEMA\ 4D.app/Contents/
  * @param {String} path
  * @api public
  */
-exports.setApplicationPath = function(path) {
+exports.setPath = function(path) {
   cinema4d_path = path;
 }
 
@@ -21,7 +21,7 @@ exports.setApplicationPath = function(path) {
  * @return {String}
  * @api public
  */
-exports.getApplicationPath = function() {
+exports.getPath = function() {
   return cinema4d_path;
 }
 

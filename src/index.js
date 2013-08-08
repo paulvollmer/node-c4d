@@ -7,7 +7,7 @@ var report = require('./report.js');
 var cinema4d = require('./cinema4d.js');
 
 exports.report = report;
-exports.cinema4d = cinema4d;
+exports.app = cinema4d;
 
 /**
  * This is the main render function.
@@ -45,7 +45,7 @@ function execCinemaRender(d, callback) {
   var tmpStderrData = [];
 
   // Execute the CINEMA 4D commandline interface.
-  var c4dRender = spawn(cinema4d.getApplicationPath(), tmpOptionsArray);
+  var c4dRender = spawn(cinema4d.getPath(), tmpOptionsArray);
   c4dRender.stdout.on('data', function(data) {
     //console.log('VERSION: '+utils.getVersionFromStdout(data.toString()) );
     utils.log(d.silent, data.toString());
