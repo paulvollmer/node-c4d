@@ -63,7 +63,8 @@ if (program.render == undefined) {
  */
 else {
   if (program.render) {
-    c4d.render({
+    /* Add the parameter comming from commander.js to this object */
+    var data = {
       filepath: program.render,
       frame: program.frame,
       oimage: program.oimage,
@@ -74,6 +75,10 @@ else {
       gui: program.gui,
       silent: program.silent,
       report: program.report
+    };
+    /* Run the CINEMA 4D render */
+    c4d.render(data, function(c) {
+      //console.log('Ready');
     });
   }
 }
