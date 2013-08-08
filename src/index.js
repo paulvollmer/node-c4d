@@ -81,12 +81,12 @@ function execCinemaRender(d, callback) {
 function checkOptions(d) {
   var tmpOptionsArray = [];
 
-  tmpOptionsArray.push('-render');
+  tmpOptionsArray.push(cinema4d.render.render.options[0]);
   tmpOptionsArray.push(d.filepath);
 
   // Check the different options...
   if (d.frame !== undefined) {
-    tmpOptionsArray.push('-frame');
+    tmpOptionsArray.push(cinema4d.render.frame.options[0]);
     var tmpFrame = d.frame.split(',');
     // Check how many parameter we add to the tmpOptionsArray.
     if (tmpFrame.length === 1) {
@@ -103,29 +103,29 @@ function checkOptions(d) {
     }
   };
   if (d.oimage !== undefined) {
-    tmpOptionsArray.push('-oimage');
+    tmpOptionsArray.push(cinema4d.render.oimage.options[0]);
     tmpOptionsArray.push(d.oimage);
   };
   if (d.omultipass !== undefined) {
-    tmpOptionsArray.push('-omultipass');
+    tmpOptionsArray.push(cinema4d.render.omultipass.options[0]);
     tmpOptionsArray.push(d.omultipass);
   };
   if (d.oformat !== undefined) {
-    tmpOptionsArray.push('-oformat');
+    tmpOptionsArray.push(cinema4d.render.oformat.options[0]);
     tmpOptionsArray.push(d.oformat);
   };
   if (d.oresolution !== undefined) {
-    tmpOptionsArray.push('-oresolution');
+    tmpOptionsArray.push(cinema4d.render.oresolution.options[0]);
     var tmpResolution = d.oresolution.split(',');
     tmpOptionsArray.push(tmpResolution[0]);
     tmpOptionsArray.push(tmpResolution[1]);
   };
   if (d.threads !== undefined) {
-    tmpOptionsArray.push('-threads');
+    tmpOptionsArray.push(cinema4d.render.threads.options[0]);
     tmpOptionsArray.push(d.threads);
   };
   if (d.gui === undefined) {
-    tmpOptionsArray.push('-nogui');
+    tmpOptionsArray.push(cinema4d.general.nogui.options[0]);
   };
 
   return tmpOptionsArray;
