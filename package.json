@@ -10,6 +10,9 @@
     "commander": "2.0.0",
     "cli-color": "0.2.2"
   },
+  "dev-dependencies": {
+    "jsdoc2": "*"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/WrongEntertainment/node-c4d.git"
