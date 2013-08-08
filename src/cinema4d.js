@@ -134,7 +134,7 @@ exports.optionFrame = function(data) {
   var arr = [];
   arr.push(render.frame.options[0]);
   var tmpFrame = data.split(',');
-  // Check how many parameter we add to the `arr`.
+  /* Check how many parameter we add to the `arr`. */
   if (tmpFrame.length === 1) {
     arr.push(tmpFrame[0]);
   }

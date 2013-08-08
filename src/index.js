@@ -16,11 +16,11 @@ exports.app = cinema4d;
  * @public
  */
 exports.render = function(d, callback) {
-  // Check if a filepath is set. if no filepath is set, we cannot render...
+  /* Check if a filepath is set. if no filepath is set, we cannot render... */
   if (d.filepath === undefined) {
     utils.log(d.silent, 'No CINEMA 4D file to render. Check the examples by running "c4d --help"');
   }
-  // Call the render...
+  /* Call the render... */
   else {
     execCinemaRender(d, function(c) {
       callback(c);
@@ -35,16 +35,16 @@ exports.render = function(d, callback) {
  * @private
  */
 function execCinemaRender(d, callback) {
-  // Print the d object. used for development and debugging
+  /* Print the d object. used for development and debugging */
   //console.log(d);
 
-  // This is the cli options array we need to execute with the spawn function.
+  /* This is the cli options array we need to execute with the spawn function. */
   var tmpOptionsArray = checkOptions(d);
-  // Save the stdout, stderr data to variable.
+  /* Save the stdout, stderr data to variable. */
   var tmpStdoutData = [];
   var tmpStderrData = [];
 
-  // Execute the CINEMA 4D commandline interface.
+  /* Execute the CINEMA 4D commandline interface. */
   var c4dRender = spawn(cinema4d.getPath(), tmpOptionsArray);
   c4dRender.stdout.on('data', function(data) {
     //console.log('VERSION: '+utils.getVersionFromStdout(data.toString()) );
@@ -84,7 +84,7 @@ function checkOptions(d) {
   arr.push(cinema4d.render.render.options[0]);
   arr.push(d.filepath);
 
-  // Check the different options...
+  /* Check the different options... */
   if (d.frame !== undefined) {
     arr.push.apply(arr, cinema4d.optionFrame(d.frame));
   };
