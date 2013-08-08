@@ -79,54 +79,33 @@ function execCinemaRender(d, callback) {
  * @private
  */
 function checkOptions(d) {
-  var tmpOptionsArray = [];
+  var arr = [];
 
-  tmpOptionsArray.push(cinema4d.render.render.options[0]);
-  tmpOptionsArray.push(d.filepath);
+  arr.push(cinema4d.render.render.options[0]);
+  arr.push(d.filepath);
 
   // Check the different options...
   if (d.frame !== undefined) {
-    tmpOptionsArray.push(cinema4d.render.frame.options[0]);
-    var tmpFrame = d.frame.split(',');
-    // Check how many parameter we add to the tmpOptionsArray.
-    if (tmpFrame.length === 1) {
-      tmpOptionsArray.push(tmpFrame[0]);
-    }
-    if (tmpFrame.length === 2) {
-      tmpOptionsArray.push(tmpFrame[0]);
-      tmpOptionsArray.push(tmpFrame[1]);
-    }
-    if (tmpFrame.length === 3) {
-      tmpOptionsArray.push(tmpFrame[0]);
-      tmpOptionsArray.push(tmpFrame[1]);
-      tmpOptionsArray.push(tmpFrame[2]);
-    }
+    arr.push.apply(arr, cinema4d.optionFrame(d.frame));
   };
   if (d.oimage !== undefined) {
-    tmpOptionsArray.push(cinema4d.render.oimage.options[0]);
-    tmpOptionsArray.push(d.oimage);
+    arr.push.apply(arr, cinema4d.optionImage(d.oimage));
   };
   if (d.omultipass !== undefined) {
-    tmpOptionsArray.push(cinema4d.render.omultipass.options[0]);
-    tmpOptionsArray.push(d.omultipass);
+    arr.push.apply(arr, cinema4d.optionMultipass(d.omultipass));
   };
   if (d.oformat !== undefined) {
-    tmpOptionsArray.push(cinema4d.render.oformat.options[0]);
-    tmpOptionsArray.push(d.oformat);
+    arr.push.apply(arr, cinema4d.optionFormat(d.oformat));
   };
   if (d.oresolution !== undefined) {
-    tmpOptionsArray.push(cinema4d.render.oresolution.options[0]);
-    var tmpResolution = d.oresolution.split(',');
-    tmpOptionsArray.push(tmpResolution[0]);
-    tmpOptionsArray.push(tmpResolution[1]);
+    arr.push.apply(arr, cinema4d.optionResolution(d.oresolution));
   };
   if (d.threads !== undefined) {
-    tmpOptionsArray.push(cinema4d.render.threads.options[0]);
-    tmpOptionsArray.push(d.threads);
+    arr.push.apply(arr, cinema4d.optionThreads(d.threads));
   };
   if (d.gui === undefined) {
-    tmpOptionsArray.push(cinema4d.general.nogui.options[0]);
+    arr.push(cinema4d.general.nogui.options[0]);
   };
 
-  return tmpOptionsArray;
+  return arr;
 }

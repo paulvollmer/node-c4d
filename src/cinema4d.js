@@ -30,7 +30,7 @@ exports.getPath = function() {
  *
  * @public
  */
-exports.general = {
+var general = {
   nogui: {
     options: ['-nogui'],
     description: 'start without user interface'
@@ -85,12 +85,14 @@ exports.general = {
   }
 };
 
+exports.general = general;
+
 /**
  * Copycat of the CINEMA 4D --help Render Options.
  *
  * @public
  */
-exports.render = {
+var render = {
   render: {
     options: ['-render', 'filename'],
     description: 'specify a file to render'
@@ -120,3 +122,119 @@ exports.render = {
     description: 'specify number of threads (0 for auto-detection)'
   }
 };
+
+exports.render = render;
+
+/**
+ * 
+ * @return Array
+ * @public
+ */
+exports.optionFrame = function(data) {
+  var arr = [];
+  arr.push(render.frame.options[0]);
+  var tmpFrame = data.split(',');
+  // Check how many parameter we add to the `arr`.
+  if (tmpFrame.length === 1) {
+    arr.push(tmpFrame[0]);
+  }
+  if (tmpFrame.length === 2) {
+    arr.push(tmpFrame[0]);
+    arr.push(tmpFrame[1]);
+  }
+  if (tmpFrame.length === 3) {
+    arr.push(tmpFrame[0]);
+    arr.push(tmpFrame[1]);
+    arr.push(tmpFrame[2]);
+  }
+  return arr;
+}
+
+/**
+ * 
+ * @return Array
+ * @public
+ */
+exports.optionImage = function(data) {
+  var arr = [];
+  arr.push(render.oimage.options[0]);
+  arr.push(data);
+  return arr;
+}
+
+/**
+ * 
+ * @return Array
+ * @public
+ */
+exports.optionMultipass = function(data) {
+  var arr = [];
+  arr.push(render.omultipass.options[0]);
+  arr.push(data);
+  return arr;
+}
+
+/**
+ * 
+ * @return Array
+ * @public
+ */
+exports.optionFormat = function(data) {
+  /* Check the data string */
+  if (data === 'TIFF' ||
+      data === 'TGA'  ||
+      data === 'BMP'  ||
+      data === 'IFF'  ||
+      data === 'JPG'  ||
+      data === 'PICT' ||
+      data === 'PSD'  ||
+      data === 'PSB'  ||
+      data === 'RLA'  ||
+      data === 'RPF'  ||
+      data === 'B3D') {
+    //console.log('Format data correct.');
+    var arr = [];
+    arr.push(render.oformat.options[0]);
+    arr.push(data);
+    return arr;
+  }
+  /* If the data string is not correct, add `TIFF` as data string. */
+  else {
+    //console.log('Not correct format.');
+    return [render.oformat.options[0], 'TIFF'];
+  };
+}
+
+/**
+ * 
+ * @return Array
+ * @public
+ */
+exports.optionResolution = function(data) {
+  /* Splite the data string to get the new width and height */
+  var tmpResolution = data.split(',');
+  /* Check if the data is correct */
+  if (tmpResolution.length === 2) {
+    console.log('Resolution data correct.');
+    var arr = [];
+    arr.push(render.oresolution.options[0]);
+    arr.push(tmpResolution[0]);
+    arr.push(tmpResolution[1]);
+    return arr;
+  } else {
+    console.log('Not correct resolution, we return nothing to render with the file settings.');
+    return '';
+  };
+}
+
+/**
+ * 
+ * @return Array
+ * @public
+ */
+exports.optionThreads = function(data) {
+  var arr = [];
+  arr.push(render.threads.options[0]);
+  arr.push(data);
+  return arr;
+}
