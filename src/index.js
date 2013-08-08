@@ -1,4 +1,4 @@
-/**
+/*
  * Module dependencies.
  */
 var spawn = require('child_process').spawn;
@@ -13,7 +13,7 @@ exports.app = cinema4d;
  * This is the main render function.
  *
  * @param {Object} d
- * @api public
+ * @public
  */
 exports.render = function(d, callback) {
   // Check if a filepath is set. if no filepath is set, we cannot render...
@@ -32,7 +32,7 @@ exports.render = function(d, callback) {
  * This function execute the CINEMA 4D commandline interface with -render option.
  *
  * @param {Object} d
- * @api private
+ * @private
  */
 function execCinemaRender(d, callback) {
   // Print the d object. used for development and debugging
@@ -76,7 +76,7 @@ function execCinemaRender(d, callback) {
  *
  * @param {Object} d
  * @return {Array}
- * @api private
+ * @private
  */
 function checkOptions(d) {
   var tmpOptionsArray = [];

@@ -1,15 +1,15 @@
 /**
  * The default path to the CINEMA 4D Application.
  *
- * @api private
+ * @private
  */
 var cinema4d_path = '/Applications/MAXON/CINEMA\ 4D R14/CINEMA\ 4D.app/Contents/MacOS/CINEMA\ 4D';
 
 /**
  * Set the path to the CINEMA 4D Application.
  *
- * @param {String} path
- * @api public
+ * @param {string} path Path to CINEMA 4D
+ * @public
  */
 exports.setPath = function(path) {
   cinema4d_path = path;
@@ -19,7 +19,7 @@ exports.setPath = function(path) {
  * Get the path to the CINEMA 4D Application.
  *
  * @return {String}
- * @api public
+ * @public
  */
 exports.getPath = function() {
   return cinema4d_path;
@@ -28,7 +28,7 @@ exports.getPath = function() {
 /**
  * Copycat of the CINEMA 4D --help General Options.
  *
- * @api public
+ * @public
  */
 exports.general = {
   nogui: {
@@ -88,7 +88,7 @@ exports.general = {
 /**
  * Copycat of the CINEMA 4D --help Render Options.
  *
- * @api public
+ * @public
  */
 exports.render = {
   render: {

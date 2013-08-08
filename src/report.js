@@ -1,4 +1,4 @@
-/**
+/*
  * Module dependencies.
  */
 var fs = require('fs');
@@ -37,7 +37,7 @@ exports.write = function(filepath, data, silent) {
 /**
  * small file write helper.
  *
- * @api private
+ * @private
  */
 function writer(src, data) {
   fs.writeFile(src, JSON.stringify(data));
@@ -47,7 +47,7 @@ function writer(src, data) {
  * Read a report file.
  *
  * @param {String} dir
- * @api public
+ * @public
  */
 exports.read = function(dir, callback) {
   tmp = fs.readFile(readDirChecker(dir), 'utf-8', function (err, content) {
@@ -62,7 +62,7 @@ exports.read = function(dir, callback) {
 /**
  * small reader helper
  *
- * @api private
+ * @private
  */
 function readDirChecker(dir) {
   if (dir === undefined) {

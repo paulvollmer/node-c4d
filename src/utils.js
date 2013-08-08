@@ -1,4 +1,4 @@
-/**
+/*
  * Module dependencies.
  */
 var clc = require('cli-color');
@@ -8,7 +8,7 @@ var clc = require('cli-color');
  *
  * @param {Boolean} silent
  * @parma {String} str The string we want to log to the console.
- * @api private
+ * @private
  */
 exports.log = function(silent, str) {
   if(silent === undefined || silent === false) {
