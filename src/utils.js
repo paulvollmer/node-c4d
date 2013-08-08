@@ -1,4 +1,9 @@
 /**
+ * Module dependencies.
+ */
+var clc = require('cli-color');
+
+/**
  * Log some data if the silent mode is not defined or false.
  *
  * @param {Boolean} silent
@@ -7,7 +12,7 @@
  */
 exports.log = function(silent, str) {
   if(silent === undefined || silent === false) {
-    console.log(str);
+    console.log(clc.green(str));
   }
 }
 

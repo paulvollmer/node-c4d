@@ -7,7 +7,8 @@
     "c4d": "./bin/c4d-cli.js"
   },
   "dependencies": {
-    "commander": "2.0.0"
+    "commander": "2.0.0",
+    "cli-color": "0.2.2"
   },
   "repository": {
     "type": "git",
