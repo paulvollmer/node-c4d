@@ -4,35 +4,10 @@
 var spawn = require('child_process').spawn;
 var utils = require('./utils.js');
 var report = require('./report.js');
+var cinema4d = require('./cinema4d.js');
 
 exports.report = report;
-
-/**
- * The default path to the CINEMA 4D Application.
- *
- * @api private
- */
-var cinema4d_path = '/Applications/MAXON/CINEMA\ 4D R14/CINEMA\ 4D.app/Contents/MacOS/CINEMA\ 4D';
-
-/**
- * Set the path to the CINEMA 4D Application.
- *
- * @param {String} path
- * @api public
- */
-exports.setApplicationPath = function(path) {
-  cinema4d_path = path;
-}
-
-/**
- * Get the path to the CINEMA 4D Application.
- *
- * @return {String}
- * @api public
- */
-exports.getApplicationPath = function() {
-  return cinema4d_path;
-}
+exports.cinema4d = cinema4d;
 
 /**
  * This is the main render function.
@@ -70,7 +45,7 @@ function execCinemaRender(d, callback) {
   var tmpStderrData = [];
 
   // Execute the CINEMA 4D commandline interface.
-  var c4dRender = spawn(cinema4d_path, tmpOptionsArray);
+  var c4dRender = spawn(cinema4d.getApplicationPath(), tmpOptionsArray);
   c4dRender.stdout.on('data', function(data) {
     //console.log('VERSION: '+utils.getVersionFromStdout(data.toString()) );
     utils.log(d.silent, data.toString());
