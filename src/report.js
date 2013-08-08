@@ -17,16 +17,12 @@ var filename = 'report.json';
  * @param {Boolean} silent
  */
 exports.write = function(filepath, data, silent) {
-  /*
-   * If no filepath is set...
-   */
+  /* If no filepath is set... */
   if (filepath === true) {
     writer(filename, data);
     utils.log(silent, 'Report saved to current working directory');
   }
-  /*
-   * If a filepath is set...
-   */
+  /* If a filepath is set... */
   else {
   	var tmpPath = filepath+'/'+filename;
     writer(tmpPath, data);
@@ -50,7 +46,7 @@ function writer(src, data) {
  * @public
  */
 exports.read = function(dir, callback) {
-  tmp = fs.readFile(readDirChecker(dir), 'utf-8', function (err, content) {
+  fs.readFile(readDirChecker(dir), 'utf-8', function (err, content) {
     if (err) {
       callback(err);
     }
