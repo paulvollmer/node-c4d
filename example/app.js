@@ -1,4 +1,9 @@
 /**
+ * This is a small example to run the CINEMA 4D Render from a Node.js app.
+ */
+
+
+/**
  * Module dependencies.
  */
 var c4d = require('c4d');
@@ -16,14 +21,9 @@ var c4d = require('c4d');
 /**
  * Render a c4d file and override some parameter.
  */
-c4d.render({filepath: 'files/project.c4d',
-            frame: '0',
-            silent: true,
-            report: 'files/'
-           },
-           function(c) {
-             console.log('Time: '+c.time);
-             console.log('Code: '+c.code);
+c4d.render({filepath: 'files/project.c4d', frame: '0', silent: true, report: 'files/'}, function(c) {
+  console.log('Time: '+c.time);
+  console.log('Code: '+c.code);
 });
 
 /**
