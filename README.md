@@ -1,4 +1,4 @@
-# node-c4d [![Dependency Status](https://gemnasium.com/WrongEntertainment/node-c4d-cli.png)](https://gemnasium.com/WrongEntertainment/node-c4d)
+# node-c4d [![Dependency Status](https://gemnasium.com/WrongEntertainment/node-c4d.png)](https://gemnasium.com/WrongEntertainment/node-c4d)
 
 Commandline Interface for MAXON CINEMA 4D
 
@@ -15,13 +15,10 @@ Commandline Interface for MAXON CINEMA 4D
 
 ## Programmatically usage
 
-    var c4d = require('c4d');
-    c4d.render({
-      filepath: '/path/to/file.c4d',
-      frame: '0,20'
-    });
+Check out the example folder.
 
 
 ## CINEMA 4D
 
-Tested with CINEMA 4D R14
+Tested with the following CINEMA 4D Versions:
+- R14
