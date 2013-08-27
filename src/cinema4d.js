@@ -16,12 +16,7 @@ exports.Cinema4D = Cinema4D;
 function Cinema4D() {
   /* The default path to the CINEMA 4D Application. */
   this.path = '/Applications/MAXON/CINEMA\ 4D R14/CINEMA\ 4D.app/Contents/MacOS/CINEMA\ 4D';
-
-  /**
-   * Copycat of the CINEMA 4D --help General Options.
-   *
-   * @public
-   */
+  /* Copycat of the CINEMA 4D --help General Options. */
   this.general = {
     nogui: {
       options: ['-nogui'],
@@ -76,12 +71,7 @@ function Cinema4D() {
       description: 'enable debug output'
     }
   };
-
-  /**
-   * Copycat of the CINEMA 4D --help Render Options.
-   *
-   * @public
-   */
+  /* Copycat of the CINEMA 4D --help Render Options. */
   this.render = {
     render: {
       options: ['-render', 'filename'],
