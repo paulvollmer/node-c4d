@@ -17,6 +17,13 @@ exports.log = function(silent, str) {
 }
 
 /**
+ *
+ */
+exports.error = function(src) {
+  console.error('E R R O R - '+str);
+}
+
+/**
  * Parse the CINEMA 4D version froun stdout data.
  */
 exports.getVersionFromStdout = function(data) {
