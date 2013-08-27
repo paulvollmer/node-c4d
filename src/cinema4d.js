@@ -1,3 +1,8 @@
+/*
+ * Module dependencies.
+ */
+var utils = require('./utils.js');
+
 /**
  * The default path to the CINEMA 4D Application.
  *
@@ -222,7 +227,7 @@ exports.optionResolution = function(data) {
     arr.push(tmpResolution[1]);
     return arr;
   } else {
-    console.log('Not correct resolution, we return nothing to render with the file settings.');
+    utils.error('Not correct resolution, we return nothing to render with the file settings.');
     return '';
   };
 }
