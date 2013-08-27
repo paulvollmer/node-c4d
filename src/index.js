@@ -18,7 +18,7 @@ exports.app = cinema4d;
 exports.render = function(d, callback) {
   /* Check if a filepath is set. if no filepath is set, we cannot render... */
   if (d.filepath === undefined) {
-    utils.log(d.silent, 'No CINEMA 4D file to render. Check the examples by running "c4d --help"');
+    utils.error('No CINEMA 4D file to render. Check the examples by running "c4d --help"');
   }
   /* Call the render... */
   else {
