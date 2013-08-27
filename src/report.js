@@ -5,9 +5,37 @@ var fs = require('fs');
 var utils = require('./utils.js');
 
 /**
- * Filename of the report file.
+ * Expose `Report`.
  */
-var filename = 'report.json';
+exports.Report = Report;
+
+/**
+ * Initialize a new `Report`.
+ *
+ * @public
+ */
+function Report() {
+  /* Filename of the report file. */
+  this.filename = 'report.json';
+}
+
+/**
+ * Set the name of the report file.
+ *
+ * @public
+ */
+Report.prototype.setFilename = function(filename) {
+  this.filename = filename;
+}
+
+/**
+ * Get the name of the report file.
+ *
+ * @public
+ */
+Report.prototype.getFilename = function() {
+  return this.filename;
+}
 
 /**
  * Write a report text file.
@@ -15,28 +43,23 @@ var filename = 'report.json';
  * @param {String} filepath
  * @param {Object} data
  * @param {Boolean} silent
+ * @public
  */
-exports.write = function(filepath, data, silent) {
-  /* If no filepath is set... */
+Report.prototype.write = function(filepath, data, silent) {
+  var tmpFilepath = null;
+
+  /* If a filepath is set... */
   if (filepath === true) {
-    writer(filename, data);
+    tmpFilepath = this.filename;
     utils.log(silent, 'Report saved to current working directory');
   }
-  /* If a filepath is set... */
+  /* If no filepath is set... */
   else {
-  	var tmpPath = filepath+'/'+filename;
-    writer(tmpPath, data);
-    utils.log(silent, 'Report saved to \''+tmpPath+'\'');
+  	tmpFilepath = filepath+'/'+this.filename;
+    utils.log(silent, 'Report saved to \''+tmpFilepath+'\'');
   }
-}
 
-/**
- * small file write helper.
- *
- * @private
- */
-function writer(src, data) {
-  fs.writeFile(src, JSON.stringify(data));
+  fs.writeFile(tmpFilepath, JSON.stringify(data));
 }
 
 /**
@@ -45,28 +68,18 @@ function writer(src, data) {
  * @param {String} dir
  * @public
  */
-exports.read = function(dir, callback) {
-  fs.readFile(readDirChecker(dir), 'utf-8', function (err, content) {
+Report.prototype.read = function(dir, callback) {
+  /* Check if the dir variable is set */
+  var tmpDir = null;
+  if (dir === undefined) tmpDir = this.filename;
+  else tmpDir = dir+this.filename;
+
+  /* Read the file */
+  fs.readFile(tmpDir, 'utf-8', function (err, content) {
     if (err) {
       callback(err);
     }
     var obj = JSON.parse(content);
     callback(obj);
   });
-}
-
-/**
- * small reader helper
- *
- * @private
- */
-function readDirChecker(dir) {
-  if (dir === undefined) {
-    //console.log('No dir set');
-    return filename;
-  }
-  else {
-    //console.log('This dir set: '+dir);
-    return dir+filename;
-  }
 }
