@@ -4,9 +4,10 @@
 var spawn = require('child_process').spawn;
 var utils = require('./utils.js');
 var report = require('./report.js');
-var cinema4d = require('./cinema4d.js');
+var Cinema4d_Class = require('./cinema4d.js');
 
 exports.report = report;
+var cinema4d = new Cinema4d_Class.Cinema4D();
 exports.app = cinema4d;
 
 /**
