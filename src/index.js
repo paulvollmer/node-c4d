@@ -4,13 +4,25 @@
 var spawn = require('child_process').spawn;
 var utils = require('./utils.js');
 var report_class = require('./report.js');
-var Cinema4d_Class = require('./cinema4d.js');
+var cinema4d_class = require('./cinema4d.js');
 
 var report = new report_class.Report();
-exports.report = report;
+var cinema4d = new cinema4d_class.Cinema4D();
 
-var cinema4d = new Cinema4d_Class.Cinema4D();
-exports.app = cinema4d;
+/**
+ * Expose `C4D`.
+ */
+exports.C4D = C4D;
+
+/**
+ * Initialize a new `C4D`.
+ *
+ * @public
+ */
+function C4D() {
+  this.report = report;
+  this.app = cinema4d;
+}
 
 /**
  * This is the main render function.
@@ -18,7 +30,7 @@ exports.app = cinema4d;
  * @param {Object} d
  * @public
  */
-exports.render = function(d, callback) {
+C4D.prototype.render = function(d, callback) {
   /* Check if a filepath is set. if no filepath is set, we cannot render... */
   if (d.filepath === undefined) {
     utils.error('No CINEMA 4D file to render. Check the examples by running "c4d --help"');
