@@ -141,8 +141,8 @@ function writeTxt(filepath, data) {
 Report.prototype.read = function(dir, callback) {
   /* Check if the dir variable is set */
   var tmpDir = null;
-  if (dir === undefined) tmpDir = this.filename;
-  else tmpDir = dir+this.filename;
+  if (dir === undefined) tmpDir = this.filename+'.json';
+  else tmpDir = dir+this.filename+'.json';
 
   /* Read the file */
   fs.readFile(tmpDir+this.format, 'utf-8', function (err, content) {
