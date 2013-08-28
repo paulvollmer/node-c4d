@@ -19,7 +19,7 @@ exports.log = function(silent, str) {
 /**
  *
  */
-exports.error = function(src) {
+exports.error = function(str) {
   console.error('E R R O R - '+str);
 }
 
