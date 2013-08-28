@@ -6,8 +6,8 @@ var clc = require('cli-color');
 /**
  * Log some data if the silent mode is not defined or false.
  *
- * @param {Boolean} silent
- * @parma {String} str The string we want to log to the console.
+ * @param {boolean} silent - Set the silent mode on or off.
+ * @parma {string} str - The string we want to log to the console.
  * @private
  */
 exports.log = function(silent, str) {
@@ -17,7 +17,10 @@ exports.log = function(silent, str) {
 }
 
 /**
+ * Print out an error message.
  *
+ * @parma {string} str - The string we want to log to the console.
+ * @private
  */
 exports.error = function(str) {
   console.error('E R R O R - '+str);
@@ -25,6 +28,9 @@ exports.error = function(str) {
 
 /**
  * Parse the CINEMA 4D version froun stdout data.
+ *
+ * @param {Object} data - The cinema4d stdout data.
+ * @private
  */
 exports.getVersionFromStdout = function(data) {
   var version = '0'
