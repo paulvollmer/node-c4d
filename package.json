@@ -14,7 +14,8 @@
     "cli-color": "0.2.2"
   },
   "devDependencies": {
-    "jsdoc": "3.2.0"
+    "jsdoc": "3.2.0",
+    "mocha": "0.3.x"
   },
   "repository": {
     "type": "git",
