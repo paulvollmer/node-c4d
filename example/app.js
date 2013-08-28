@@ -27,7 +27,7 @@ c4d.render({filepath: 'files/project.c4d', frame: '0', silent: true, report: 'fi
 });
 
 /**
- * Read a report.json
+ * Read a report.json. The report file must exist before you render...
  */
 // c4d.report.read('./files/', function(data) {
 //   console.log('time: ');
