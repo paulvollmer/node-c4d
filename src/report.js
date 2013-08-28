@@ -131,7 +131,7 @@ Report.prototype.write = function(filepath, data, silent) {
   }
 
   /* Write the file in the defined format. */
-  if (checkFormat(FORMAT.JSON.name)) {
+  if (this.checkFormat(FORMAT.JSON.name)) {
     writeJson(tmpFilepath, data);
   }
   else if (checkFormat(FORMAT.XML.name)) {
