@@ -3,15 +3,15 @@ var report_class = require('./../src/report.js');
 var report = new report_class.Report();
 
 suite('report.js', function() {
-  test('check filename variable', function() {
+  test('filename check variable', function() {
     assert.equal( 'report', report.filename );
   });
 
-  test('getFilename() should return the report filename.', function() {
+  test('getFilename() return the report filename.', function() {
     assert.equal( 'report', report.getFilename() );
   });
   
-  test('setFilename() set a report filename and get it.', function() {
+  test('setFilename("foo") set the report filename and get it.', function() {
     report.setFilename('foo');
     assert.equal( 'foo', report.getFilename() );
   });
