@@ -1,29 +1,43 @@
-/*
+/**
  * Module dependencies.
+ *
+ * @private
  */
 var fs = require('fs');
 var utils = require('./utils.js');
 
 /**
  * Expose `Report`.
+ *
+ * @private
  */
 exports.Report = Report;
 
 /**
  * Initialize a new `Report`.
  *
+ * @constructor
  * @public
  */
 function Report() {
-  /* Filename of the report file. */
+  /**
+   * Filename of the report file.
+   *
+   * @private
+   */
   this.filename = 'report';
-  /* Format of the report file. */
+  /**
+   * Format of the report file.
+   *
+   * @private
+   */
   this.format = 'json';
 }
 
 /**
  * Set the name of the report file.
  *
+ * @param {string} filename - Filename of the report.
  * @public
  */
 Report.prototype.setFilename = function(filename) {
@@ -33,6 +47,7 @@ Report.prototype.setFilename = function(filename) {
 /**
  * Get the name of the report file.
  *
+ * @returns {string} The filename of the report. 
  * @public
  */
 Report.prototype.getFilename = function() {
@@ -47,9 +62,9 @@ Report.prototype.getFilename = function() {
 var availableFormats = ['json', 'xml', 'txt'];
 
 /**
- * Set
+ * Set the format of the report.
  *
- * @param format The following formats can be used: json, xml, txt
+ * @param {string} format - The following formats can be used: json, xml, txt
  * @public
  */
 Report.prototype.setFormat = function(format) {
@@ -61,8 +76,9 @@ Report.prototype.setFormat = function(format) {
 }
 
 /**
- * Get
+ * Get the format of the report.
  *
+ * @returns {string} The report format.
  * @public
  */
 Report.prototype.getFormat = function() {
@@ -72,9 +88,9 @@ Report.prototype.getFormat = function() {
 /**
  * Write a report text file.
  *
- * @param {String} filepath
- * @param {Object} data
- * @param {Boolean} silent
+ * @param {string} filepath - The filepath of the report.
+ * @param {Object} data - The report data.
+ * @param {boolean} [silent] - If true, nothing will be logged to console.
  * @public
  */
 Report.prototype.write = function(filepath, data, silent) {
@@ -104,7 +120,8 @@ Report.prototype.write = function(filepath, data, silent) {
 }
 
 /**
- *
+ * Write a JSON report.
+ * 
  * @private
  */
 function writeJson(filepath, data) {
@@ -112,6 +129,7 @@ function writeJson(filepath, data) {
 }
 
 /**
+ * Write a XML report.
  *
  * @private
  */
@@ -120,6 +138,7 @@ function writeXml(filepath, data) {
 }
 
 /**
+ * Write a Plaintext report.
  *
  * @private
  */
@@ -135,7 +154,7 @@ function writeTxt(filepath, data) {
 /**
  * Read a report file.
  *
- * @param {String} dir
+ * @param {string} dir - The report directory.
  * @public
  */
 Report.prototype.read = function(dir, callback) {
