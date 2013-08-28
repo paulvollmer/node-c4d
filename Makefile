@@ -1,10 +1,14 @@
 
-docs: docclean
+test:
+	@echo "TODO: create Tests"
+
+docs: clean
+	@echo "Create a new docs directory and generate the documentation."
 	@mkdir docs
 	@./node_modules/jsdoc/jsdoc --destination docs ./src ./README.md
 
-docclean:
+clean:
 	@rm -rf docs
-	@echo "Removed generated docs"
+	@echo "Old documentation removed."
 
-.PHONY: docs docclean
+.PHONY: test docs clean

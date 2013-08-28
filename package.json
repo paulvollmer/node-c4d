@@ -6,6 +6,9 @@
   "bin": {
     "c4d": "./bin/c4d"
   },
+  "scripts": {
+    "test": "make test"
+  },
   "dependencies": {
     "commander": "2.0.0",
     "cli-color": "0.2.2"
