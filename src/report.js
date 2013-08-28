@@ -16,7 +16,9 @@ exports.Report = Report;
  */
 function Report() {
   /* Filename of the report file. */
-  this.filename = 'report.json';
+  this.filename = 'report';
+  /* Format of the report file. */
+  this.format = 'json';
 }
 
 /**
@@ -38,6 +40,36 @@ Report.prototype.getFilename = function() {
 }
 
 /**
+ * Array to store the available report formats.
+ *
+ * @private
+ */
+var availableFormats = ['json', 'xml', 'txt'];
+
+/**
+ * Set
+ *
+ * @param format The following formats can be used: json, xml, txt
+ * @public
+ */
+Report.prototype.setFormat = function(format) {
+  for(var i=0; i<availableFormats.length; i++) {
+    if (format === availableFormats[i]) {
+      this.format = format;
+    };
+  };
+}
+
+/**
+ * Get
+ *
+ * @public
+ */
+Report.prototype.getFormat = function() {
+  return this.format;
+}
+
+/**
  * Write a report text file.
  *
  * @param {String} filepath
@@ -51,15 +83,53 @@ Report.prototype.write = function(filepath, data, silent) {
   /* If a filepath is set... */
   if (filepath === true) {
     tmpFilepath = this.filename;
-    utils.log(silent, 'Report saved to current working directory');
+    utils.log(silent, 'Report saving to current working directory.');
   }
   /* If no filepath is set... */
   else {
   	tmpFilepath = filepath+'/'+this.filename;
-    utils.log(silent, 'Report saved to \''+tmpFilepath+'\'');
+    utils.log(silent, 'Report saving to \''+tmpFilepath+'\'');
   }
 
-  fs.writeFile(tmpFilepath, JSON.stringify(data));
+  /* Write the file in the defined format. */
+  if (this.format === availableFormats[0]) {
+    writeJson(tmpFilepath+'.'+this.format, data);
+  }
+  else if (this.format === availableFormats[1]) {
+    writeXml(tmpFilepath+'.'+this.format, data);
+  }
+  else if (this.format === availableFormats[2]) {
+    writeTxt(tmpFilepath+'.'+this.format, data);
+  };
+}
+
+/**
+ *
+ * @private
+ */
+function writeJson(filepath, data) {
+  fs.writeFile(filepath, JSON.stringify(data));
+}
+
+/**
+ *
+ * @private
+ */
+function writeXml(filepath, data) {
+  // TODO: write xml file
+}
+
+/**
+ *
+ * @private
+ */
+function writeTxt(filepath, data) {
+  var tmpData = 'Time:\n'+data.time+'\n\n';
+  tmpData += 'Command options:\n'+JSON.stringify(data.command_options)+'\n\n';
+  tmpData += 'Cinema4d stdout:\n'+data.cinema4d_stdout+'\n';
+  tmpData += 'Cinema4d stderr:\n'+data.cinema4d_stderr+'\n';
+  tmpData += 'Code:\n'+data.code+'\n';
+  fs.writeFile(filepath, tmpData);
 }
 
 /**
@@ -75,7 +145,7 @@ Report.prototype.read = function(dir, callback) {
   else tmpDir = dir+this.filename;
 
   /* Read the file */
-  fs.readFile(tmpDir, 'utf-8', function (err, content) {
+  fs.readFile(tmpDir+this.format, 'utf-8', function (err, content) {
     if (err) {
       callback(err);
     }
