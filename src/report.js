@@ -82,24 +82,24 @@ Report.prototype.write = function(filepath, data, silent) {
 
   /* If a filepath is set... */
   if (filepath === true) {
-    tmpFilepath = this.filename;
+    tmpFilepath = this.filename+'.'+this.format;
     utils.log(silent, 'Report saving to current working directory.');
   }
   /* If no filepath is set... */
   else {
-  	tmpFilepath = filepath+'/'+this.filename;
+  	tmpFilepath = filepath+'/'+this.filename+'.'+this.format;
     utils.log(silent, 'Report saving to \''+tmpFilepath+'\'');
   }
 
   /* Write the file in the defined format. */
   if (this.format === availableFormats[0]) {
-    writeJson(tmpFilepath+'.'+this.format, data);
+    writeJson(tmpFilepath, data);
   }
   else if (this.format === availableFormats[1]) {
-    writeXml(tmpFilepath+'.'+this.format, data);
+    writeXml(tmpFilepath, data);
   }
   else if (this.format === availableFormats[2]) {
-    writeTxt(tmpFilepath+'.'+this.format, data);
+    writeTxt(tmpFilepath, data);
   };
 }
 
