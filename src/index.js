@@ -1,5 +1,7 @@
-/*
+/**
  * Module dependencies.
+ *
+ * @private
  */
 var spawn = require('child_process').spawn;
 var utils = require('./utils.js');
@@ -11,12 +13,15 @@ var cinema4d = new cinema4d_class.Cinema4D();
 
 /**
  * Expose `C4D`.
+ *
+ * @private
  */
 exports = module.exports = new C4D;
 
 /**
  * Initialize a new `C4D`.
  *
+ * @constructor
  * @public
  */
 function C4D() {
@@ -27,7 +32,8 @@ function C4D() {
 /**
  * This is the main render function.
  *
- * @param {Object} d
+ * @param {Object} d - The render settings.
+ * @param {string} d.filepath - The path to the CINEMA 4D file.
  * @public
  */
 C4D.prototype.render = function(d, callback) {

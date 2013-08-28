@@ -1,16 +1,21 @@
-/*
+/**
  * Module dependencies.
+ *
+ * @private
  */
 var utils = require('./utils.js');
 
 /**
  * Expose `Cinema4D`.
+ *
+ * @private
  */
 exports.Cinema4D = Cinema4D;
 
 /**
  * Initialize a new `Cinema4D`.
  *
+ * @constructor
  * @public
  */
 function Cinema4D() {
@@ -151,7 +156,7 @@ Cinema4D.prototype.optionFrame = function(data) {
 
 /**
  * 
- * @return Array
+ * @returns Array
  * @public
  */
 Cinema4D.prototype.optionImage = function(data) {
@@ -163,7 +168,7 @@ Cinema4D.prototype.optionImage = function(data) {
 
 /**
  * 
- * @return Array
+ * @returns Array
  * @public
  */
 Cinema4D.prototype.optionMultipass = function(data) {
@@ -175,7 +180,7 @@ Cinema4D.prototype.optionMultipass = function(data) {
 
 /**
  * 
- * @return Array
+ * @returns Array
  * @public
  */
 Cinema4D.prototype.optionFormat = function(data) {
@@ -206,7 +211,7 @@ Cinema4D.prototype.optionFormat = function(data) {
 
 /**
  * 
- * @return Array
+ * @returns Array
  * @public
  */
 Cinema4D.prototype.optionResolution = function(data) {
@@ -228,7 +233,7 @@ Cinema4D.prototype.optionResolution = function(data) {
 
 /**
  * 
- * @return Array
+ * @returns Array
  * @public
  */
 Cinema4D.prototype.optionThreads = function(data) {
