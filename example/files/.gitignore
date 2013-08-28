@@ -1,3 +1,5 @@
-project.c4d
-report.json
+*.c4d
+*.json
+*.xml
+*.txt
 *.tif
