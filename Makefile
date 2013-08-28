@@ -1,14 +1,23 @@
 
 test:
-	@./node_modules/.bin/mocha --ui tdd
+	@./node_modules/.bin/mocha --ui tdd --reporter spec
 
-docs: clean
+test-html: test-clean
+	@./node_modules/.bin/mocha --ui tdd --reporter html-cov > test-coverage.html
+
+test-clean:
+	@rm -f test-coverage.html
+	@echo "test-coverage.html removed."
+
+docs: docs-clean
 	@echo "Create a new docs directory and generate the documentation."
 	@mkdir docs
 	@./node_modules/jsdoc/jsdoc --destination docs ./src ./README.md
 
-clean:
+docs-clean:
 	@rm -rf docs
 	@echo "Old documentation removed."
 
-.PHONY: test docs clean
+clean: test-clean docs-clean
+
+.PHONY: test test-html test-clean docs docs-clean clean
