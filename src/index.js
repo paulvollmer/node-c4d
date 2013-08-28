@@ -12,7 +12,7 @@ var cinema4d = new cinema4d_class.Cinema4D();
 /**
  * Expose `C4D`.
  */
-exports.C4D = C4D;
+exports = module.exports = new C4D;
 
 /**
  * Initialize a new `C4D`.
