@@ -1,6 +1,6 @@
 
 test:
-	@echo "TODO: create Tests"
+	@./node_modules/.bin/mocha --ui tdd
 
 docs: clean
 	@echo "Create a new docs directory and generate the documentation."
