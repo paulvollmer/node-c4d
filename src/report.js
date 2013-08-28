@@ -7,6 +7,17 @@ var fs = require('fs');
 var utils = require('./utils.js');
 
 /**
+ * Object to store the available report formats.
+ *
+ * @private
+ */
+var FORMAT = {
+  JSON: {id: 0, name: 'json', suffix: '.json'},
+  XML:  {id: 1, name: 'xml',  suffix: '.xml'},
+  TXT:  {id: 2, name: 'txt',  suffix: '.txt'},
+};
+
+/**
  * Expose `Report`.
  *
  * @private
@@ -31,7 +42,7 @@ function Report() {
    *
    * @private
    */
-  this.format = 'json';
+  this.format = FORMAT.JSON.name;
 }
 
 /**
@@ -55,11 +66,22 @@ Report.prototype.getFilename = function() {
 }
 
 /**
- * Array to store the available report formats.
+ * Check the report format.
  *
- * @private
+ * @param {number|string} format - The format to check.
+ * @public
  */
-var availableFormats = ['json', 'xml', 'txt'];
+Report.prototype.checkFormat = function(format) {
+  if (format === FORMAT.JSON.name) {
+    return true;
+  } else if (format === FORMAT.XML.name) {
+    return true;
+  } else if (format === FORMAT.TXT.name) {
+    return true;
+  } else {
+    return false;
+  };
+}
 
 /**
  * Set the format of the report.
@@ -68,10 +90,11 @@ var availableFormats = ['json', 'xml', 'txt'];
  * @public
  */
 Report.prototype.setFormat = function(format) {
-  for(var i=0; i<availableFormats.length; i++) {
-    if (format === availableFormats[i]) {
-      this.format = format;
-    };
+  if (this.checkFormat(format)) {
+    this.format = format;
+  } else {
+    utils.error('Not correct format. Format set to default (json).');
+    this.format = FORMAT.JSON.name;
   };
 }
 
@@ -108,13 +131,13 @@ Report.prototype.write = function(filepath, data, silent) {
   }
 
   /* Write the file in the defined format. */
-  if (this.format === availableFormats[0]) {
+  if (checkFormat(FORMAT.JSON.name)) {
     writeJson(tmpFilepath, data);
   }
-  else if (this.format === availableFormats[1]) {
+  else if (checkFormat(FORMAT.XML.name)) {
     writeXml(tmpFilepath, data);
   }
-  else if (this.format === availableFormats[2]) {
+  else if (checkFormat(FORMAT.TXT.name)) {
     writeTxt(tmpFilepath, data);
   };
 }
@@ -160,8 +183,8 @@ function writeTxt(filepath, data) {
 Report.prototype.read = function(dir, callback) {
   /* Check if the dir variable is set */
   var tmpDir = null;
-  if (dir === undefined) tmpDir = this.filename+'.json';
-  else tmpDir = dir+this.filename+'.json';
+  if (dir === undefined) tmpDir = this.filename+FORMAT.JSON.suffix;
+  else tmpDir = dir+this.filename+FORMAT.JSON.suffix;
 
   /* Read the file */
   fs.readFile(tmpDir+this.format, 'utf-8', function (err, content) {
