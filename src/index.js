@@ -69,11 +69,11 @@ function execCinemaRender(d, callback) {
   var c4dRender = spawn(cinema4d.getPath(), tmpOptionsArray);
   c4dRender.stdout.on('data', function(data) {
     //console.log('VERSION: '+utils.getVersionFromStdout(data.toString()) );
-    utils.log(d.silent, data.toString());
+    utils.log(data.toString(), d.silent);
     tmpStdoutData.push(data.toString());
   });
   c4dRender.stderr.on('data', function(data) {
-    utils.log(d.silent, 'Error: '+data.toString());
+    utils.log('Error: '+data.toString(), d.silent);
     tmpStderrData.push(data.toString());
   });
   c4dRender.on('close', function(code) {
