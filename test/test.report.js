@@ -12,10 +12,6 @@ suite('report.js', function() {
       assert.equal( true, report.setFormat('json') );
     });
 
-    test('setFormat("xml") set the report format to xml.', function() {
-      assert.equal( true, report.setFormat('xml') );
-    });
-    
     test('setFormat("txt") set the report format to txt.', function() {
       assert.equal( true, report.setFormat('txt') );
     });
@@ -29,6 +25,7 @@ suite('report.js', function() {
     test('getFilepath() return the report filepath.', function() {
       assert.equal( 'report', report.getFilepath() );
     });
+
     test('setFilepath("./testreport") set the report filepath.', function() {
       report.setFilepath('testreport');
       assert.equal( 'testreport', report.getFilepath() );
@@ -43,19 +40,14 @@ suite('report.js', function() {
     cinema4d_stderr: 'baz',
     code: '0'
   };
+
   suite('write', function() {
     test('write(testData) write a json report file', function() {
       report.setFilepath('test/report');
       report.setFormat('json');
       assert.equal( 'json', report.write(testData) );
     });
-
-    // test('write(testData, true) write a xml report file', function() {
-    //   report.setFilepath('test/report');
-    //   report.setFormat('xml');
-    //   assert.equal( 'xml', report.write(testData) );
-    // });
-
+    
     test('write(testData, true) write a txt report file silent', function() {
       report.setFilepath('test/report');
       report.setFormat('txt');

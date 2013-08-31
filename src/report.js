@@ -22,7 +22,6 @@ exports.Report = Report;
  */
 function Report() {
   this.json = new reportformat.Reportformat('json', '.json');
-  this.xml = new reportformat.Reportformat('xml', '.xml');
   this.txt = new reportformat.Reportformat('txt', '.txt');
   /**
    * Format of the report file.
@@ -57,10 +56,6 @@ Report.prototype.getFormat = function() {
 Report.prototype.setFormat = function(format) {
   if (format === this.json.name) {
     this.format = this.json;
-    return true;
-  }
-  else if (format === this.xml.name) {
-    this.format = this.xml;
     return true;
   }
   else if (format === this.txt.name) {
@@ -98,18 +93,8 @@ Report.prototype.setFilepath = function(filepath) {
  * @private
  */
 function writeJson(filepath, data) {
-  fs.writeFile(filepath, JSON.stringify(data), function(c) {
-    return c;
-  });
-}
-
-/**
- * Write a XML report.
- *
- * @private
- */
-function writeXml(filepath, data) {
-  // TODO: write xml file
+  var tmpData = JSON.stringify(data);
+  fs.writeFileSync(filepath, tmpData);
 }
 
 /**
@@ -118,14 +103,14 @@ function writeXml(filepath, data) {
  * @private
  */
 function writeTxt(filepath, data) {
+  /* Create the string we want to write. */
   var tmpData = 'Time:\n'+data.time+'\n\n';
   tmpData += 'Command options:\n'+JSON.stringify(data.command_options)+'\n\n';
   tmpData += 'Cinema4d stdout:\n'+data.cinema4d_stdout+'\n';
   tmpData += 'Cinema4d stderr:\n'+data.cinema4d_stderr+'\n';
   tmpData += 'Code:\n'+data.code+'\n';
-  fs.writeFile(filepath, tmpData, function(c) {
-    return c;
-  });
+  /* Write the file. */
+  fs.writeFileSync(filepath, tmpData);
 }
 
 /**
@@ -141,9 +126,6 @@ Report.prototype.write = function(data, silent) {
   /* Write the file in the defined format. */
   if (this.json.nameEquals(this.format.name)) {
     writeJson(tmpFilepath, data);
-  }
-  else if (this.xml.nameEquals(this.format.name)) {
-    writeXml(tmpFilepath, data);
   }
   else if (this.txt.nameEquals(this.format.name)) {
     writeTxt(tmpFilepath, data);
