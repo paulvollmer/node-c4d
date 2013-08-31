@@ -5,6 +5,7 @@
  */
 var fs = require('fs');
 var utils = require('./utils.js');
+var reportformat = require('./reportformat.js');
 
 /**
  * Expose `Report`.
@@ -20,66 +21,75 @@ exports.Report = Report;
  * @public
  */
 function Report() {
+  this.json = new reportformat.Reportformat('json', '.json');
+  this.xml = new reportformat.Reportformat('xml', '.xml');
+  this.txt = new reportformat.Reportformat('txt', '.txt');
   /**
-   * Filename of the report file.
+   * Format of the report file.
    *
    * @private
    */
-  this.filename = 'report';
+  this.format = this.json;
+  /**
+   * The report filepath.
+   *
+   * @private
+   */
+  this.filepath = 'report';
 }
 
 /**
- * Set the name of the report file.
+ * Get the report format.
  *
- * @param {string} filename - Filename of the report.
+ * @returns {string} The format of the report file.
  * @public
  */
-Report.prototype.setFilename = function(filename) {
-  this.filename = filename;
+Report.prototype.getFormat = function() {
+  return this.format.getName();
 }
 
 /**
- * Get the name of the report file.
+ * Set the report format.
  *
- * @returns {string} The filename of the report. 
+ * @param {string} format - The format of the report file.
  * @public
  */
-Report.prototype.getFilename = function() {
-  return this.filename;
-}
-
-/**
- * Write a report text file.
- *
- * @param {string} filepath - The filepath of the report.
- * @param {Object} data - The report data.
- * @param {boolean} [silent] - If true, nothing will be logged to console.
- * @public
- */
-Report.prototype.write = function(filepath, data, silent) {
-  var tmpFilepath = null;
-
-  /* If a filepath is set... */
-  if (filepath === true) {
-    tmpFilepath = this.filename+'.'+this.format;
-    utils.log(silent, 'Report saving to current working directory.');
+Report.prototype.setFormat = function(format) {
+  if (format === this.json.name) {
+    this.format = this.json;
+    return true;
   }
-  /* If no filepath is set... */
+  else if (format === this.xml.name) {
+    this.format = this.xml;
+    return true;
+  }
+  else if (format === this.txt.name) {
+    this.format = this.txt;
+    return true;
+  }
   else {
-  	tmpFilepath = filepath+'/'+this.filename+'.'+this.format;
-    utils.log(silent, 'Report saving to \''+tmpFilepath+'\'');
-  }
-
-  /* Write the file in the defined format. */
-  if (this.checkFormat(FORMAT.JSON.name)) {
-    writeJson(tmpFilepath, data);
-  }
-  else if (checkFormat(FORMAT.XML.name)) {
-    writeXml(tmpFilepath, data);
-  }
-  else if (checkFormat(FORMAT.TXT.name)) {
-    writeTxt(tmpFilepath, data);
+    return false;
   };
+}
+
+/**
+ * Get the path of the report file.
+ *
+ * @returns {string} The path of the report file.
+ * @public
+ */
+Report.prototype.getFilepath = function() {
+  return this.filepath;
+}
+
+/**
+ * Set the path of the report file.
+ *
+ * @param {string} filepath - The path of the report file.
+ * @public
+ */
+Report.prototype.setFilepath = function(filepath) {
+  this.filepath = filepath;
 }
 
 /**
@@ -88,7 +98,9 @@ Report.prototype.write = function(filepath, data, silent) {
  * @private
  */
 function writeJson(filepath, data) {
-  fs.writeFile(filepath, JSON.stringify(data));
+  fs.writeFile(filepath, JSON.stringify(data), function(c) {
+    return c;
+  });
 }
 
 /**
@@ -111,27 +123,50 @@ function writeTxt(filepath, data) {
   tmpData += 'Cinema4d stdout:\n'+data.cinema4d_stdout+'\n';
   tmpData += 'Cinema4d stderr:\n'+data.cinema4d_stderr+'\n';
   tmpData += 'Code:\n'+data.code+'\n';
-  fs.writeFile(filepath, tmpData);
+  fs.writeFile(filepath, tmpData, function(c) {
+    return c;
+  });
+}
+
+/**
+ * Write a report text file.
+ *
+ * @param {Object} data - The report data.
+ * @param {boolean} [silent] - If true, nothing will be logged to console.
+ * @public
+ */
+Report.prototype.write = function(data, silent) {
+  var tmpFilepath = this.filepath+this.format.suffix;
+  
+  /* Write the file in the defined format. */
+  if (this.json.nameEquals(this.format.name)) {
+    writeJson(tmpFilepath, data);
+  }
+  else if (this.xml.nameEquals(this.format.name)) {
+    writeXml(tmpFilepath, data);
+  }
+  else if (this.txt.nameEquals(this.format.name)) {
+    writeTxt(tmpFilepath, data);
+  };
+
+  utils.log('Report saved to \''+tmpFilepath+'\'', silent);
+  return this.format.name;
 }
 
 /**
  * Read a report file.
  *
- * @param {string} dir - The report directory.
+ * @param {string} filepath - The report filepath.
  * @public
  */
-Report.prototype.read = function(dir, callback) {
-  /* Check if the dir variable is set */
-  var tmpDir = null;
-  if (dir === undefined) tmpDir = this.filename+FORMAT.JSON.suffix;
-  else tmpDir = dir+this.filename+FORMAT.JSON.suffix;
-
+Report.prototype.read = function(filepath, callback) {
   /* Read the file */
-  fs.readFile(tmpDir+this.format, 'utf-8', function (err, content) {
+  fs.readFile(filepath, 'utf-8', function (err, content) {
     if (err) {
       callback(err);
     }
     var obj = JSON.parse(content);
     callback(obj);
+    return obj;
   });
 }
