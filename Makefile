@@ -1,13 +1,16 @@
 
-test:
+test: test-clean
 	@./node_modules/.bin/mocha --ui tdd --reporter spec
 
 test-html: test-clean
 	@./node_modules/.bin/mocha --ui tdd --reporter html-cov > test-coverage.html
 
 test-clean:
+	@rm -f test/report.json
+	@rm -f test/report.xml
+	@rm -f test/report.txt
 	@rm -f test-coverage.html
-	@echo "test-coverage.html removed."
+	
 
 docs: docs-clean
 	@echo "Create a new docs directory and generate the documentation."
