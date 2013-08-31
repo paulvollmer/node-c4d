@@ -22,8 +22,11 @@ var c4d = require('c4d');
  * Render a c4d file and override some parameter.
  */
 c4d.render({filepath: 'files/project.c4d', frame: '0', silent: true, report: 'files/'}, function(c) {
-  console.log('Time: '+c.time);
-  console.log('Code: '+c.code);
+  console.log('Time:\n'+c.time+'\n');
+  console.log('Command options:\n'+c.command_options+'\n');
+  console.log('Cinema4D stdout:\n'+c.cinema4d_stdout+'\n');
+  console.log('Cinema4D stderr:\n'+c.cinema4d_stderr+'\n');
+  console.log('Code:\n'+c.code+'\n');
 });
 
 /**
