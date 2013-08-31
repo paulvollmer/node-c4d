@@ -43,7 +43,7 @@ C4D.prototype.render = function(d, callback) {
   }
   /* Call the render... */
   else {
-    execCinemaRender(d, function(c) {
+    this.execCinemaRender(d, function(c) {
       callback(c);
     });
   }
@@ -55,12 +55,12 @@ C4D.prototype.render = function(d, callback) {
  * @param {Object} d
  * @private
  */
-function execCinemaRender(d, callback) {
+C4D.prototype.execCinemaRender = function(d, callback) {
   /* Print the d object. used for development and debugging */
   //console.log(d);
 
   /* This is the cli options array we need to execute with the spawn function. */
-  var tmpOptionsArray = checkOptions(d);
+  var tmpOptionsArray = this.createOptionsArray(d);
   /* Save the stdout, stderr data to variable. */
   var tmpStdoutData = [];
   var tmpStderrData = [];
@@ -93,38 +93,39 @@ function execCinemaRender(d, callback) {
 }
 
 /**
- * Check the Options comming from commander.js
+ * Create an array with options the Cinema 4D render can use.
+ * The options comes from commander.js.
  *
- * @param {Object} d
+ * @param {Object} data
  * @return {Array}
  * @private
  */
-function checkOptions(d) {
+C4D.prototype.createOptionsArray = function(data) {
   var arr = [];
 
   arr.push(cinema4d.render.render.options[0]);
-  arr.push(d.filepath);
+  arr.push(data.filepath);
 
   /* Check the different options... */
-  if (d.frame !== undefined) {
-    arr.push.apply(arr, cinema4d.optionFrame(d.frame));
+  if (data.frame !== undefined) {
+    arr.push.apply(arr, cinema4d.optionFrame(data.frame));
   };
-  if (d.oimage !== undefined) {
-    arr.push.apply(arr, cinema4d.optionImage(d.oimage));
+  if (data.oimage !== undefined) {
+    arr.push.apply(arr, cinema4d.optionImage(data.oimage));
   };
-  if (d.omultipass !== undefined) {
-    arr.push.apply(arr, cinema4d.optionMultipass(d.omultipass));
+  if (data.omultipass !== undefined) {
+    arr.push.apply(arr, cinema4d.optionMultipass(data.omultipass));
   };
-  if (d.oformat !== undefined) {
-    arr.push.apply(arr, cinema4d.optionFormat(d.oformat));
+  if (data.oformat !== undefined) {
+    arr.push.apply(arr, cinema4d.optionFormat(data.oformat));
   };
-  if (d.oresolution !== undefined) {
-    arr.push.apply(arr, cinema4d.optionResolution(d.oresolution));
+  if (data.oresolution !== undefined) {
+    arr.push.apply(arr, cinema4d.optionResolution(data.oresolution));
   };
-  if (d.threads !== undefined) {
-    arr.push.apply(arr, cinema4d.optionThreads(d.threads));
+  if (data.threads !== undefined) {
+    arr.push.apply(arr, cinema4d.optionThreads(data.threads));
   };
-  if (d.gui === undefined) {
+  if (data.gui === undefined) {
     arr.push(cinema4d.general.nogui.options[0]);
   };
 
