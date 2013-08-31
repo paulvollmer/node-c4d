@@ -6,17 +6,6 @@
 var utils = require('./utils.js');
 
 /**
- * Object to store the available report formats.
- *
- * @private
- */
-var FORMAT = {
-  JSON: {id: 0, name: 'json', suffix: '.json'},
-  XML:  {id: 1, name: 'xml',  suffix: '.xml'},
-  TXT:  {id: 2, name: 'txt',  suffix: '.txt'},
-};
-
-/**
  * Expose `Reportformat`.
  *
  * @private
@@ -27,29 +16,53 @@ exports.Reportformat = Reportformat;
  * Initialize a new `Reportformat`.
  *
  * @constructor
+ * @param {string} name - Name of the format.
+ * @param {string} suffix - Suffix of the format.
  * @public
  */
-function Reportformat() {
+function Reportformat(name, suffix) {
   /**
-   * Format of the report file.
+   * Variable to store the format name.
    *
    * @private
    */
-  this.data = FORMAT.JSON.name;
+  this.name = name;
+  /**
+   * Variable to store the format suffix.
+   *
+   * @private
+   */
+  this.suffix = suffix;
 }
 
 /**
- * Check the report format.
+ * Get the format name.
  *
- * @param {number|string} format - The format to check.
+ * @returns {string} The report format.
  * @public
  */
-Reportformat.prototype.check = function(format) {
-  if (format === FORMAT.JSON.name) {
-    return true;
-  } else if (format === FORMAT.XML.name) {
-    return true;
-  } else if (format === FORMAT.TXT.name) {
+Reportformat.prototype.getName = function() {
+  return this.name;
+}
+
+/**
+ * Get the format suffix.
+ *
+ * @returns {string} The report format.
+ * @public
+ */
+Reportformat.prototype.getSuffix = function() {
+  return this.suffix;
+}
+
+/**
+ * Check if the format name equals the parameter name.
+ *
+ * @param {string} name - The format name.
+ * @public
+ */
+Reportformat.prototype.nameEquals = function(name) {
+  if (name === this.name) {
     return true;
   } else {
     return false;
@@ -57,26 +70,15 @@ Reportformat.prototype.check = function(format) {
 }
 
 /**
- * Set the format of the report.
+ * Check if the format suffix equals the parameter suffix.
  *
- * @param {string} format - The following formats can be used: json, xml, txt
+ * @param {string} suffix - The format suffix.
  * @public
  */
-Reportformat.prototype.set = function(format) {
-  if (this.check(format)) {
-    this.data = format;
+Reportformat.prototype.suffixEquals = function(suffix) {
+  if (suffix === this.suffix) {
+    return true;
   } else {
-    utils.error('Not correct format. Format set to default (json).');
-    this.data = FORMAT.JSON.name;
+    return false;
   };
-}
-
-/**
- * Get the format of the report.
- *
- * @returns {string} The report format.
- * @public
- */
-Reportformat.prototype.get = function() {
-  return this.data;
 }

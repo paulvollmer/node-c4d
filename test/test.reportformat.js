@@ -1,41 +1,33 @@
 var assert = require('assert');
 var format_class = require('./../src/reportformat.js');
-var format = new format_class.Reportformat();
+var format = new format_class.Reportformat('json', '.json');
 
 suite('reportformat.js', function() {
-  test('data check variable.', function() {
-    assert.equal( 'json', format.data );
+  suite('name', function() {
+    test('getName() returns "json".', function() {
+      assert.equal( 'json', format.getName() );
+    });
+
+    test('suffixEquals(".json") returns true.', function() {
+      assert.equal( true, format.suffixEquals('.json') );
+    });
+
+    test('suffixEquals(".foo") returns false.', function() {
+      assert.equal( false, format.suffixEquals('.foo') );
+    });
   });
 
-  test('check("json") return true if the format is correct.', function() {
-    assert.equal( true, format.check('json') );
-  });
+  suite('suffix', function() {
+    test('getSuffix() returns ".json".', function() {
+      assert.equal( '.json', format.getSuffix() );
+    });
 
-  test('check("bar") return false if the format is incorrect.', function() {
-    assert.equal( false, format.check('bar') );
-  });
+    test('nameEquals("json") returns true.', function() {
+      assert.equal( true, format.nameEquals('json') );
+    });
 
-  test('get() return the report format.', function() {
-    assert.equal( 'json', format.get() );
-  });
-
-  test('set("txt") set the report format to `txt` and get it.', function() {
-    format.set('txt');
-    assert.equal( 'txt', format.get() );
-  });
-  
-  test('set("xml") set the report format to `xml` and get it.', function() {
-    format.set('xml');
-    assert.equal( 'xml', format.get() );
-  });
-  
-  test('set("json") set the report format to `json` and get it.', function() {
-    format.set('json');
-    assert.equal( 'json', format.get() );
-  });
-  
-  test('set("foo") set the report format to an incorrect format.', function() {
-    format.set('foo');
-    assert.equal( 'json', format.get() );
+    test('nameEquals("foo") returns false.', function() {
+      assert.equal( false, format.nameEquals('foo') );
+    });
   });
 });
