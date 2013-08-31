@@ -92,8 +92,11 @@ suite('cinema4d.js', function() {
     test('Without data.', function() {
       assert.equal( false, c4d.optionResolution() );
     });
-    test('With data.', function() {
+    test('With data "1000,1000".', function() {
       assert.deepEqual( ['-oresolution','1000','1000'], c4d.optionResolution('1000,1000') );
+    });
+    test('With incorrect data "foo".', function() {
+      assert.deepEqual( false, c4d.optionResolution('foo') );
     });
   });
 
@@ -101,8 +104,11 @@ suite('cinema4d.js', function() {
     test('Without data.', function() {
       assert.equal( false, c4d.optionThreads() );
     });
-    test('With data.', function() {
+    test('With data. "1"', function() {
       assert.deepEqual( ['-threads','1'], c4d.optionThreads(1) );
+    });
+    test('With incorrect data "foo".', function() {
+      assert.deepEqual( ['-threads','0'], c4d.optionThreads('foo') );
     });
   });
 });

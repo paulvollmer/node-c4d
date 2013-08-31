@@ -214,7 +214,8 @@ Cinema4D.prototype.optionFormat = function(data) {
       arr.push(data);
       return arr;
     }
-    /* If the data string is not correct, add `TIFF` as data string. */
+    /* If the data string is not correct,
+       push `TIFF` as default data string. */
     else {
       return [this.render.oformat.options[0], 'TIFF'];
     };
@@ -234,7 +235,6 @@ Cinema4D.prototype.optionResolution = function(data) {
     var tmpResolution = data.split(',');
     /* Check if the data is correct */
     if (tmpResolution.length === 2) {
-      console.log('Resolution data correct.');
       var arr = [];
       arr.push(this.render.oresolution.options[0]);
       arr.push(tmpResolution[0]);
@@ -258,7 +258,14 @@ Cinema4D.prototype.optionThreads = function(data) {
   if (data !== undefined) {
     var arr = [];
     arr.push(this.render.threads.options[0]);
-    arr.push(data);
+    /* Check if the data variable is a number. */
+    if (typeof data === 'number') {
+      arr.push(data);
+    }
+    /* If it is not a number, push 0 as default variable. */
+    else {
+      arr.push(0);
+    }
     return arr;
   } else {
     return false;
