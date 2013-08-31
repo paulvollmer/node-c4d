@@ -135,23 +135,27 @@ Cinema4D.prototype.getPath = function() {
  * @public
  */
 Cinema4D.prototype.optionFrame = function(data) {
-  var arr = [];
-  arr.push(this.render.frame.options[0]);
-  var tmpFrame = data.split(',');
-  /* Check how many parameter we add to the `arr`. */
-  if (tmpFrame.length === 1) {
-    arr.push(tmpFrame[0]);
-  }
-  if (tmpFrame.length === 2) {
-    arr.push(tmpFrame[0]);
-    arr.push(tmpFrame[1]);
-  }
-  if (tmpFrame.length === 3) {
-    arr.push(tmpFrame[0]);
-    arr.push(tmpFrame[1]);
-    arr.push(tmpFrame[2]);
-  }
-  return arr;
+  if (data !== undefined) {
+    var arr = [];
+    arr.push(this.render.frame.options[0]);
+    var tmpFrame = data.split(',');
+    /* Check how many parameter we add to the `arr`. */
+    if (tmpFrame.length === 1) {
+      arr.push(tmpFrame[0]);
+    }
+    if (tmpFrame.length === 2) {
+      arr.push(tmpFrame[0]);
+      arr.push(tmpFrame[1]);
+    }
+    if (tmpFrame.length === 3) {
+      arr.push(tmpFrame[0]);
+      arr.push(tmpFrame[1]);
+      arr.push(tmpFrame[2]);
+    }
+    return arr;
+  } else {
+    return false;
+  };
 }
 
 /**
@@ -160,10 +164,14 @@ Cinema4D.prototype.optionFrame = function(data) {
  * @public
  */
 Cinema4D.prototype.optionImage = function(data) {
-  var arr = [];
-  arr.push(this.render.oimage.options[0]);
-  arr.push(data);
-  return arr;
+  if (data !== undefined) {
+    var arr = [];
+    arr.push(this.render.oimage.options[0]);
+    arr.push(data);
+    return arr;
+  } else {
+    return false;
+  };
 }
 
 /**
@@ -172,10 +180,14 @@ Cinema4D.prototype.optionImage = function(data) {
  * @public
  */
 Cinema4D.prototype.optionMultipass = function(data) {
-  var arr = [];
-  arr.push(this.render.omultipass.options[0]);
-  arr.push(data);
-  return arr;
+  if (data !== undefined) {
+    var arr = [];
+    arr.push(this.render.omultipass.options[0]);
+    arr.push(data);
+    return arr;
+  } else {
+    return false;
+  };
 }
 
 /**
@@ -184,28 +196,30 @@ Cinema4D.prototype.optionMultipass = function(data) {
  * @public
  */
 Cinema4D.prototype.optionFormat = function(data) {
-  /* Check the data string */
-  if (data === 'TIFF' ||
-      data === 'TGA'  ||
-      data === 'BMP'  ||
-      data === 'IFF'  ||
-      data === 'JPG'  ||
-      data === 'PICT' ||
-      data === 'PSD'  ||
-      data === 'PSB'  ||
-      data === 'RLA'  ||
-      data === 'RPF'  ||
-      data === 'B3D') {
-    //console.log('Format data correct.');
-    var arr = [];
-    arr.push(this.render.oformat.options[0]);
-    arr.push(data);
-    return arr;
-  }
-  /* If the data string is not correct, add `TIFF` as data string. */
-  else {
-    //console.log('Not correct format.');
-    return [render.oformat.options[0], 'TIFF'];
+  if (data !== undefined) {
+    /* Check if the data string is correct. */
+    if (data === 'TIFF' ||
+        data === 'TGA'  ||
+        data === 'BMP'  ||
+        data === 'IFF'  ||
+        data === 'JPG'  ||
+        data === 'PICT' ||
+        data === 'PSD'  ||
+        data === 'PSB'  ||
+        data === 'RLA'  ||
+        data === 'RPF'  ||
+        data === 'B3D') {
+      var arr = [];
+      arr.push(this.render.oformat.options[0]);
+      arr.push(data);
+      return arr;
+    }
+    /* If the data string is not correct, add `TIFF` as data string. */
+    else {
+      return [this.render.oformat.options[0], 'TIFF'];
+    };
+  } else {
+    return false;
   };
 }
 
@@ -215,19 +229,23 @@ Cinema4D.prototype.optionFormat = function(data) {
  * @public
  */
 Cinema4D.prototype.optionResolution = function(data) {
-  /* Splite the data string to get the new width and height */
-  var tmpResolution = data.split(',');
-  /* Check if the data is correct */
-  if (tmpResolution.length === 2) {
-    console.log('Resolution data correct.');
-    var arr = [];
-    arr.push(this.render.oresolution.options[0]);
-    arr.push(tmpResolution[0]);
-    arr.push(tmpResolution[1]);
-    return arr;
+  if (data !== undefined) {
+    /* Splite the data string to get the new width and height */
+    var tmpResolution = data.split(',');
+    /* Check if the data is correct */
+    if (tmpResolution.length === 2) {
+      console.log('Resolution data correct.');
+      var arr = [];
+      arr.push(this.render.oresolution.options[0]);
+      arr.push(tmpResolution[0]);
+      arr.push(tmpResolution[1]);
+      return arr;
+    } else {
+      utils.error('Not correct resolution, we return nothing to render with the file settings.');
+      return '';
+    };
   } else {
-    utils.error('Not correct resolution, we return nothing to render with the file settings.');
-    return '';
+    return false;
   };
 }
 
@@ -237,8 +255,12 @@ Cinema4D.prototype.optionResolution = function(data) {
  * @public
  */
 Cinema4D.prototype.optionThreads = function(data) {
-  var arr = [];
-  arr.push(this.render.threads.options[0]);
-  arr.push(data);
-  return arr;
+  if (data !== undefined) {
+    var arr = [];
+    arr.push(this.render.threads.options[0]);
+    arr.push(data);
+    return arr;
+  } else {
+    return false;
+  };
 }
