@@ -1,1 +1,8 @@
 .travis.yml
+
+# Example files
+/example/files/*.c4d
+/example/files/*.json
+/example/files/*.xml
+/example/files/*.txt
+/example/files/*.tif
