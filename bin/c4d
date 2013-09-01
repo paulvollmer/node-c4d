@@ -20,16 +20,16 @@ var utils = require('../src/utils.js');
  */
 program
   .version(pkg.version)
-  .option('-r, --render [filepath]', c4d.app.render.render.description)
-  .option('-f, --frame [from,to,step]', c4d.app.render.frame.description)
-  .option('-i, --oimage [imagename]', c4d.app.render.oimage.description)
-  .option('-m, --omultipass [imagename]', c4d.app.render.omultipass.description)
-  .option('-a, --oformat [imageformat]', c4d.app.render.oformat.description)
-  .option('-e, --oresolution [width,height]', c4d.app.render.oresolution.description)
-  .option('-t, --threads [threadcnt]', c4d.app.render.threads.description)
-  .option('-g, --gui', 'start with user interface')
-  .option('-s, --silent', 'silent mode. don\'t output anything')
-  .option('-c, --report [filepath]', 'save the CINEMA 4D stdout to a json file. if no filepath is set, write file to the current working directory')
+  .option('-r, --render [filepath]', c4d.options_render.render.description)
+  .option('--frame [from,to,step]', c4d.options_render.frame.description)
+  .option('--oimage [imagename]', c4d.options_render.oimage.description)
+  .option('--omultipass [imagename]', c4d.options_render.omultipass.description)
+  .option('--oformat [imageformat]', c4d.options_render.oformat.description)
+  .option('--oresolution [width,height]', c4d.options_render.oresolution.description)
+  .option('--threads [threadcnt]', c4d.options_render.threads.description)
+  .option('--gui', 'start with user interface')
+  .option('--silent', 'silent mode. don\'t output anything')
+  .option('--report [filepath]', 'save the CINEMA 4D stdout to a json file. if no filepath is set, write file to the current working directory');
 program.on('--help', function() {
   console.log('  Description:');
   console.log('');
