@@ -30,6 +30,8 @@ exports = module.exports = new C4D();
  * @public
  */
 function C4D() {
+  this.options_render = c4d_options_render;
+  this.options_general = c4d_options_general;
   this.report = report;
   this.app = cinema4d;
 }
