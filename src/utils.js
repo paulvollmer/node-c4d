@@ -14,8 +14,8 @@ exports.log = function(message, silent) {
   if(silent === undefined || silent === false) {
     console.log(clc.green(message));
   }
-  return message
-}
+  return message;
+};
 
 /**
  * Print out an error message.
@@ -27,7 +27,7 @@ exports.error = function(message) {
   var tempMessage = 'E R R O R - '+message;
   console.error(tempMessage);
   return tempMessage;
-}
+};
 
 // /**
 //  * Parse the CINEMA 4D version froun stdout data.
