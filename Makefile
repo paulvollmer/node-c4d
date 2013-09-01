@@ -1,5 +1,5 @@
 
-test: test-clean
+test: test-clean hint
 	@node node_modules/.bin/mocha --ui tdd --reporter spec
 
 test-html: test-clean
@@ -28,6 +28,6 @@ docs-clean:
 clean: test-clean docs-clean
 
 hint:
-	node node_modules/.bin/jshint src/
+	@node node_modules/.bin/jshint src/ bin/c4d
 
 .PHONY: test test-html test-c4d test-clean docs docs-clean clean hint
