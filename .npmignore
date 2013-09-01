@@ -1,4 +1,5 @@
 .travis.yml
+docs/
 
 # Example files
 /example/files/*.c4d

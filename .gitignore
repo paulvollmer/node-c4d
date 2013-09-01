@@ -1,6 +1,7 @@
 *.DS_Store
 node_modules/
 *npm-debug.log
+docs/
 
 # Example files
 /example/files/*.c4d
