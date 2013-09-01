@@ -1,4 +1,4 @@
-# node-c4d [![Build Status](https://travis-ci.org/WrongEntertainment/node-c4d.png?branch=master)](https://travis-ci.org/WrongEntertainment/node-c4d) [![Dependency Status](https://gemnasium.com/WrongEntertainment/node-c4d.png)](https://gemnasium.com/WrongEntertainment/node-c4d)
+# node-c4d [![Build Status](https://travis-ci.org/WrongEntertainment/node-c4d.png?branch=master)](https://travis-ci.org/WrongEntertainment/node-c4d) [![NPM version](https://badge.fury.io/js/c4d.png)](http://badge.fury.io/js/c4d) [![Dependency Status](https://gemnasium.com/WrongEntertainment/node-c4d.png)](https://gemnasium.com/WrongEntertainment/node-c4d)
 
 Commandline Interface for MAXON CINEMA 4D
 
