@@ -6,10 +6,14 @@ test-html: test-clean
 	@node node_modules/.bin/mocha --ui tdd --reporter html-cov > test-coverage.html
 
 test-c4d: test-clean
-	@echo "---> Testing Cinema 4D cli"
+	@echo "\n---> Testing Cinema 4D cli\n\n"
 	@node bin/c4d -h
 	@node bin/c4d -V
-	@echo "---> Testing Cinema 4D programmatically"
+	@echo "\n---> Testing Cinema 4D programmatically\n\n"
+	@echo "c4d -r test/files/project.c4d\n"
+	@node bin/c4d -r test/files/project.c4d
+	@echo "c4d -r test/files/project.c4d --frame 0,2\n"
+	@node bin/c4d -r test/files/project.c4d --frame 0,2
 
 test-clean:
 	@rm -f test/report.json
