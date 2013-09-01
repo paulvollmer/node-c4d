@@ -106,32 +106,36 @@ C4D.prototype.execCinemaRender = function(d, callback) {
  * @private
  */
 C4D.prototype.createOptionsArray = function(data) {
-  var arr = [];
-
-  arr.push.apply(arr, c4d_options_render.render.getOptionsArray(data.filepath));
-
-  /* Check the different options... */
-  if (data.frame !== undefined) {
-    arr.push.apply(arr, c4d_options_render.frame.getOptionsArray(data.frame));
+  if (data !== undefined) {
+    var arr = [];
+    /* Check if the filepath and the other options exist. */
+    if (data.filepath !== undefined) {
+      arr.push.apply(arr, c4d_options_render.render.getOptionsArray(data.filepath));
+    };
+    if (data.frame !== undefined) {
+      arr.push.apply(arr, c4d_options_render.frame.getOptionsArray(data.frame));
+    };
+    if (data.oimage !== undefined) {
+      arr.push.apply(arr, c4d_options_render.oimage.getOptionsArray(data.oimage));
+    };
+    if (data.omultipass !== undefined) {
+      arr.push.apply(arr, c4d_options_render.omultipass.getOptionsArray(data.omultipass));
+    };
+    if (data.oformat !== undefined) {
+      arr.push.apply(arr, c4d_options_render.oformat.getOptionsArray(data.oformat));
+    };
+    if (data.oresolution !== undefined) {
+      arr.push.apply(arr, c4d_options_render.oresolution.getOptionsArray(data.oresolution));
+    };
+    if (data.threads !== undefined) {
+      arr.push.apply(arr, c4d_options_render.othreads.getOptionsArray(data.threads));
+    };
+    if (data.gui === undefined) {
+      arr.push(c4d_options_general.nogui.options[0]);
+    };
+    /* Return the array */
+    return arr;
+  } else{
+    return [];
   };
-  if (data.oimage !== undefined) {
-    arr.push.apply(arr, c4d_options_render.oimage.getOptionsArray(data.oimage));
-  };
-  if (data.omultipass !== undefined) {
-    arr.push.apply(arr, c4d_options_render.omultipass.getOptionsArray(data.omultipass));
-  };
-  if (data.oformat !== undefined) {
-    arr.push.apply(arr, c4d_options_render.oformat.getOptionsArray(data.oformat));
-  };
-  if (data.oresolution !== undefined) {
-    arr.push.apply(arr, c4d_options_render.oresolution.getOptionsArray(data.oresolution));
-  };
-  if (data.threads !== undefined) {
-    arr.push.apply(arr, c4d_options_render.othreads.getOptionsArray(data.threads));
-  };
-  if (data.gui === undefined) {
-    arr.push(c4d_options_general.nogui.options[0]);
-  };
-
-  return arr;
 }
