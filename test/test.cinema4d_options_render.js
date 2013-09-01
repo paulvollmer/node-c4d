@@ -139,7 +139,7 @@ suite('cinema4d_options_render.js', function() {
       assert.deepEqual( ['-threads','1'], c4d_options_render.threads.getOptionsArray(1) );
     });
     
-    test('getOptionsArray() with incorrect data "foo".', function() {
+    test('getOptionsArray() with incorrect data "foo" (string).', function() {
       assert.deepEqual( ['-threads','0'], c4d_options_render.threads.getOptionsArray('foo') );
     });
   });
