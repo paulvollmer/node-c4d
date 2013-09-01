@@ -173,13 +173,13 @@ exports.oresolution = {
 exports.threads = {
   options: ['-threads', 'threadcnt'],
   description: 'specify number of threads (0 for auto-detection)',
-  getOptionsArray: function(data) {
-    if (data !== undefined) {
+  getOptionsArray: function(threadcnt) {
+    if (threadcnt !== undefined) {
       var arr = [];
       arr.push(this.options[0]);
-      /* Check if the data variable is a number. */
-      if (typeof data === 'number') {
-        arr.push(data);
+      /* Check if the threadcnt variable is a number. */
+      if (typeof threadcnt === 'number') {
+        arr.push(threadcnt);
       }
       /* If it is not a number, push 0 as default variable. */
       else {
