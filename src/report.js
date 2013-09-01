@@ -45,7 +45,7 @@ function Report() {
  */
 Report.prototype.getFormat = function() {
   return this.format.getName();
-}
+};
 
 /**
  * Set the report format.
@@ -64,8 +64,8 @@ Report.prototype.setFormat = function(format) {
   }
   else {
     return false;
-  };
-}
+  }
+};
 
 /**
  * Get the path of the report file.
@@ -75,7 +75,7 @@ Report.prototype.setFormat = function(format) {
  */
 Report.prototype.getFilepath = function() {
   return this.filepath;
-}
+};
 
 /**
  * Set the path of the report file.
@@ -85,7 +85,7 @@ Report.prototype.getFilepath = function() {
  */
 Report.prototype.setFilepath = function(filepath) {
   this.filepath = filepath;
-}
+};
 
 /**
  * Write a JSON report.
@@ -129,11 +129,11 @@ Report.prototype.write = function(data, silent) {
   }
   else if (this.txt.nameEquals(this.format.name)) {
     writeTxt(tmpFilepath, data);
-  };
+  }
 
   utils.log('Report saved to \''+tmpFilepath+'\'', silent);
   return this.format.name;
-}
+};
 
 /**
  * Read a report file.
@@ -151,4 +151,4 @@ Report.prototype.read = function(filepath, callback) {
     callback(obj);
     return obj;
   });
-}
+};

@@ -43,7 +43,7 @@ function Reportformat(name, suffix) {
  */
 Reportformat.prototype.getName = function() {
   return this.name;
-}
+};
 
 /**
  * Get the format suffix.
@@ -53,7 +53,7 @@ Reportformat.prototype.getName = function() {
  */
 Reportformat.prototype.getSuffix = function() {
   return this.suffix;
-}
+};
 
 /**
  * Check if the format name equals the parameter name.
@@ -66,8 +66,8 @@ Reportformat.prototype.nameEquals = function(name) {
     return true;
   } else {
     return false;
-  };
-}
+  }
+};
 
 /**
  * Check if the format suffix equals the parameter suffix.
@@ -80,5 +80,5 @@ Reportformat.prototype.suffixEquals = function(suffix) {
     return true;
   } else {
     return false;
-  };
-}
+  }
+};

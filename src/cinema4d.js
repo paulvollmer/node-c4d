@@ -20,7 +20,7 @@ exports.Cinema4D = Cinema4D;
  */
 function Cinema4D() {
   /* The default path to the CINEMA 4D Application. */
-  this.path = '/Applications/MAXON/CINEMA\ 4D R14/CINEMA\ 4D.app/Contents/MacOS/CINEMA\ 4D';
+  this.path = '/Applications/MAXON/CINEMA\\ 4D R14/CINEMA\\ 4D.app/Contents/MacOS/CINEMA\\ 4D';
 }
 
 /**
@@ -31,7 +31,7 @@ function Cinema4D() {
  */
 Cinema4D.prototype.setPath = function(path) {
   this.path = path;
-}
+};
 
 /**
  * Get the path to the CINEMA 4D Application.
@@ -41,4 +41,4 @@ Cinema4D.prototype.setPath = function(path) {
  */
 Cinema4D.prototype.getPath = function() {
   return this.path;
-} 
+};

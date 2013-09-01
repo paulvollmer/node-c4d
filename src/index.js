@@ -18,7 +18,7 @@ var cinema4d = new cinema4d_class.Cinema4D();
  *
  * @private
  */
-exports = module.exports = new C4D;
+exports = module.exports = new C4D();
 
 /**
  * Initialize a new `C4D`.
@@ -52,7 +52,7 @@ C4D.prototype.render = function(d, callback) {
       callback(c);
     });
   }
-}
+};
 
 /**
  * This function execute the CINEMA 4D commandline interface with -render option.
@@ -92,10 +92,10 @@ C4D.prototype.execCinemaRender = function(d, callback) {
       };
       report.write(d.report, tmpData, d.silent);
       callback(tmpData);
-    };
+    }
     //utils.log(d.silent, 'Closed with code: '+code);
   });
-}
+};
 
 /**
  * Create an array with options the Cinema 4D render can use.
@@ -111,31 +111,31 @@ C4D.prototype.createOptionsArray = function(data) {
     /* Check if the filepath and the other options exist. */
     if (data.filepath !== undefined) {
       arr.push.apply(arr, c4d_options_render.render.getOptionsArray(data.filepath));
-    };
+    }
     if (data.frame !== undefined) {
       arr.push.apply(arr, c4d_options_render.frame.getOptionsArray(data.frame));
-    };
+    }
     if (data.oimage !== undefined) {
       arr.push.apply(arr, c4d_options_render.oimage.getOptionsArray(data.oimage));
-    };
+    }
     if (data.omultipass !== undefined) {
       arr.push.apply(arr, c4d_options_render.omultipass.getOptionsArray(data.omultipass));
-    };
+    }
     if (data.oformat !== undefined) {
       arr.push.apply(arr, c4d_options_render.oformat.getOptionsArray(data.oformat));
-    };
+    }
     if (data.oresolution !== undefined) {
       arr.push.apply(arr, c4d_options_render.oresolution.getOptionsArray(data.oresolution));
-    };
+    }
     if (data.threads !== undefined) {
       arr.push.apply(arr, c4d_options_render.othreads.getOptionsArray(data.threads));
-    };
+    }
     if (data.gui === undefined) {
       arr.push(c4d_options_general.nogui.options[0]);
-    };
+    }
     /* Return the array */
     return arr;
   } else{
     return [];
-  };
-}
+  }
+};

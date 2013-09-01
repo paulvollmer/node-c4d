@@ -21,7 +21,7 @@ exports.render = {
       return arr;
     } else {
       return [];
-    };
+    }
   }
 };
 
@@ -54,7 +54,7 @@ exports.frame = {
       return arr;
     } else {
       return [];
-    };
+    }
   }
 };
 
@@ -74,7 +74,7 @@ exports.oimage = {
       return arr;
     } else {
       return [];
-    };
+    }
   }
 };
 
@@ -94,7 +94,7 @@ exports.omultipass = {
       return arr;
     } else {
       return [];
-    };
+    }
   }
 };
 
@@ -129,10 +129,10 @@ exports.oformat = {
          push `TIFF` as default data string. */
       else {
         return [this.options[0], 'TIFF'];
-      };
+      }
     } else {
       return [];
-    };
+    }
   }
 };
 
@@ -158,10 +158,10 @@ exports.oresolution = {
       } else {
         utils.error('Not correct resolution, we return nothing to render with the file settings.');
         return [];
-      };
+      }
     } else {
       return [];
-    };
+    }
   }
 };
 
@@ -188,6 +188,6 @@ exports.threads = {
       return arr;
     } else {
       return [];
-    };
+    }
   }
 };
