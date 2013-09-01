@@ -31,24 +31,21 @@ program
   .option('--silent', 'silent mode. don\'t output anything')
   .option('--report [filepath]', 'save the CINEMA 4D stdout to a json file. if no filepath is set, write file to the current working directory');
 program.on('--help', function() {
-  console.log('  Description:');
-  console.log('');
-  console.log('    '+pkg.description);
-  console.log('');
-  console.log('  Examples:');
-  console.log('');
-  console.log('    # render a file');
-  console.log('    $ c4d --render /path/to/your/file.c4d');
-  console.log('');
-  console.log('    # render a file and override the resolution');
-  console.log('    $ c4d --render /path/to/your/file.c4d --oresolution 1500,1000');
-  console.log('');
-  console.log('    # render a file from frame 0 to 100');
-  console.log('    $ c4d --render /path/to/your/file.c4d --frame 0,100');
-  console.log('');
-  console.log('    # render a file and save a report');
-  console.log('    $ c4d --render /path/to/your/file.c4d --report');
-  console.log('');
+
+  var description = '  Description:\n\n'+
+                    '    '+pkg.description+'\n\n';
+  process.stdout.write(description);
+  
+  var examples = '  Examples:\n\n'+
+                 '    # render a file\n'+
+                 '    $ c4d --render /path/to/your/file.c4d\n\n'+
+                 '    # render a file and override the resolution\n'+
+                 '    $ c4d --render /path/to/your/file.c4d --oresolution 1500,1000\n\n'+
+                 '    # render a file from frame 0 to 100\n'+
+                 '    $ c4d --render /path/to/your/file.c4d --frame 0,100\n\n'+
+                 '    # render a file and save a report\n'+
+                 '    $ c4d --render /path/to/your/file.c4d --report\n\n';
+  process.stdout.write(examples);
 });
 program.parse(process.argv);
 
