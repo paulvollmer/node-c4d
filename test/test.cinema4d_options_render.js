@@ -10,6 +10,10 @@ suite('cinema4d_options_render.js', function() {
     test('getOptionsArray() with data "foo".', function() {
       assert.deepEqual( ['-render','foo'], c4d_options_render.render.getOptionsArray('foo') );
     });
+
+    test('getOptionsArray() with incorrect data "123" (number).', function() {
+      assert.deepEqual( [], c4d_options_render.render.getOptionsArray(123) );
+    });
   });
 
   suite('frame', function() {
@@ -38,15 +42,23 @@ suite('cinema4d_options_render.js', function() {
     test('getOptionsArray() with data "foo".', function() {
       assert.deepEqual( ['-oimage','foo'], c4d_options_render.oimage.getOptionsArray('foo') );
     });
+
+    test('getOptionsArray() with incorrect data "123" (number).', function() {
+      assert.deepEqual( [], c4d_options_render.oimage.getOptionsArray(123) );
+    });
   });
 
   suite('omultipass', function() {
     test('getOptionsArray() without data.', function() {
       assert.deepEqual( [], c4d_options_render.omultipass.getOptionsArray() );
     });
-    
+
     test('getOptionsArray() with data "foo".', function() {
       assert.deepEqual( ['-omultipass','foo'], c4d_options_render.omultipass.getOptionsArray('foo') );
+    });
+
+    test('getOptionsArray() with incorrect data "123" (number).', function() {
+      assert.deepEqual( [], c4d_options_render.omultipass.getOptionsArray(123) );
     });
   });
 

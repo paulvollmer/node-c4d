@@ -14,7 +14,7 @@ exports.render = {
   options: ['-render', 'filename'],
   description: 'specify a file to render',
   getOptionsArray: function(filename) {
-    if (filename !== undefined) {
+    if (filename !== undefined && typeof filename === 'string') {
       var arr = [];
       arr.push(this.options[0]);
       arr.push(filename);
@@ -66,11 +66,11 @@ exports.frame = {
 exports.oimage = {
   options: ['-oimage', 'imagename'],
   description: 'override the image output path for rendering',
-  getOptionsArray: function(data) {
-    if (data !== undefined) {
+  getOptionsArray: function(imagename) {
+    if (imagename !== undefined && typeof imagename === 'string') {
       var arr = [];
       arr.push(this.options[0]);
-      arr.push(data);
+      arr.push(imagename);
       return arr;
     } else {
       return [];
@@ -86,11 +86,11 @@ exports.oimage = {
 exports.omultipass = {
   options: ['-omultipass', 'imagename'],
   description: 'override the multipass output path for rendering',
-  getOptionsArray: function(data) {
-    if (data !== undefined) {
+  getOptionsArray: function(imagename) {
+    if (imagename !== undefined && typeof imagename === 'string') {
       var arr = [];
       arr.push(this.options[0]);
-      arr.push(data);
+      arr.push(imagename);
       return arr;
     } else {
       return [];
@@ -157,7 +157,7 @@ exports.oresolution = {
         return arr;
       } else {
         utils.error('Not correct resolution, we return nothing to render with the file settings.');
-        return '';
+        return [];
       };
     } else {
       return [];
