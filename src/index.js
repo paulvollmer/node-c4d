@@ -5,6 +5,8 @@
  */
 var spawn = require('child_process').spawn;
 var utils = require('./utils.js');
+var c4d_options_render = require('./cinema4d_options_render.js');
+var c4d_options_general = require('./cinema4d_options_general.js');
 var report_class = require('./report.js');
 var cinema4d_class = require('./cinema4d.js');
 
@@ -20,6 +22,9 @@ exports = module.exports = new C4D;
 
 /**
  * Initialize a new `C4D`.
+ *
+ * @example
+ * TODO: add example
  *
  * @constructor
  * @public
@@ -103,30 +108,29 @@ C4D.prototype.execCinemaRender = function(d, callback) {
 C4D.prototype.createOptionsArray = function(data) {
   var arr = [];
 
-  arr.push(cinema4d.render.render.options[0]);
-  arr.push(data.filepath);
+  arr.push.apply(arr, c4d_options_render.render.getOptionsArray(data.filepath));
 
   /* Check the different options... */
   if (data.frame !== undefined) {
-    arr.push.apply(arr, cinema4d.optionFrame(data.frame));
+    arr.push.apply(arr, c4d_options_render.frame.getOptionsArray(data.frame));
   };
   if (data.oimage !== undefined) {
-    arr.push.apply(arr, cinema4d.optionImage(data.oimage));
+    arr.push.apply(arr, c4d_options_render.oimage.getOptionsArray(data.oimage));
   };
   if (data.omultipass !== undefined) {
-    arr.push.apply(arr, cinema4d.optionMultipass(data.omultipass));
+    arr.push.apply(arr, c4d_options_render.omultipass.getOptionsArray(data.omultipass));
   };
   if (data.oformat !== undefined) {
-    arr.push.apply(arr, cinema4d.optionFormat(data.oformat));
+    arr.push.apply(arr, c4d_options_render.oformat.getOptionsArray(data.oformat));
   };
   if (data.oresolution !== undefined) {
-    arr.push.apply(arr, cinema4d.optionResolution(data.oresolution));
+    arr.push.apply(arr, c4d_options_render.oresolution.getOptionsArray(data.oresolution));
   };
   if (data.threads !== undefined) {
-    arr.push.apply(arr, cinema4d.optionThreads(data.threads));
+    arr.push.apply(arr, c4d_options_render.othreads.getOptionsArray(data.threads));
   };
   if (data.gui === undefined) {
-    arr.push(cinema4d.general.nogui.options[0]);
+    arr.push(c4d_options_general.nogui.options[0]);
   };
 
   return arr;
