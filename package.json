@@ -15,7 +15,8 @@
   },
   "devDependencies": {
     "jsdoc": "3.2.0",
-    "mocha": "0.3.x"
+    "mocha": "0.3.x",
+    "jshint": "2.1.10"
   },
   "repository": {
     "type": "git",
