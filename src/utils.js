@@ -1,5 +1,7 @@
-/*
+/**
  * Module dependencies.
+ *
+ * @private
  */
 var clc = require('cli-color');
 
