@@ -1,5 +1,5 @@
 
-test: test-clean hint
+test: test-clean
 	@node node_modules/.bin/mocha --ui tdd --reporter spec
 
 test-html: test-clean
