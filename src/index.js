@@ -8,10 +8,8 @@ var utils = require('./utils.js');
 var c4d_options_render = require('./cinema4d_options_render.js');
 var c4d_options_general = require('./cinema4d_options_general.js');
 var report_class = require('./report.js');
-var cinema4d_class = require('./cinema4d.js');
 
 var report = new report_class.Report();
-var cinema4d = new cinema4d_class.Cinema4D();
 
 /**
  * Expose `C4D`.
@@ -30,11 +28,32 @@ exports = module.exports = new C4D();
  * @public
  */
 function C4D() {
+  /* The default path to the CINEMA 4D Application. */
+  this.path = '/Applications/MAXON/CINEMA\ 4D R14/CINEMA\ 4D.app/Contents/MacOS/CINEMA\ 4D';
   this.options_render = c4d_options_render;
   this.options_general = c4d_options_general;
   this.report = report;
-  this.app = cinema4d;
 }
+
+/**
+ * Set the path to the CINEMA 4D Application.
+ *
+ * @param {string} path Path to CINEMA 4D
+ * @public
+ */
+C4D.prototype.setPath = function(path) {
+  this.path = path;
+};
+
+/**
+ * Get the path to the CINEMA 4D Application.
+ *
+ * @return {String}
+ * @public
+ */
+C4D.prototype.getPath = function() {
+  return this.path;
+};
 
 /**
  * This is the main render function.
@@ -73,7 +92,7 @@ C4D.prototype.execCinemaRender = function(d, callback) {
   var tmpStderrData = [];
 
   /* Execute the CINEMA 4D commandline interface. */
-  var c4dRender = spawn(cinema4d.getPath(), tmpOptionsArray);
+  var c4dRender = spawn(this.path, tmpOptionsArray);
   c4dRender.stdout.on('data', function(data) {
     //console.log('VERSION: '+utils.getVersionFromStdout(data.toString()) );
     utils.log(data.toString(), d.silent);
