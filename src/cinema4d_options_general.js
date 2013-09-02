@@ -3,7 +3,7 @@
  *
  * @public
  */
- exports.nogui = {
+exports.nogui = {
   options: ['-nogui'],
   description: 'start without user interface',
   getOptionsArray: function() {
